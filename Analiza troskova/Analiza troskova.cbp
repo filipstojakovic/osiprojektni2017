@@ -31,11 +31,25 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="analitCommands.h" />
+		<Unit filename="admin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="admin.h" />
+		<Unit filename="analyst.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="analyst.h" />
+		<Unit filename="login.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="login.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="signin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="signin.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
