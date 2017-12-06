@@ -23,58 +23,57 @@ int checkFile()    // provjeri da li postoji datoteka account.txt
         return 0;
 }
 
-ACCOUNT *setNode(char group,char *name, char* surname, char *pin)
+int checkAccount(char *name,char* surname, char *pin, int *flag)
 {
-    ACCOUNT *novi=(ACCOUNT*)calloc(1,sizeof(ACCOUNT));
-    novi->group=group;
-    strcpy(novi->name,name);
-    strcpy(novi->surname, surname);
-    strcpy(novi->pin,pin);
-    return novi;
-}
-void fillAccounts(ACCOUNT **head)
-{
-    int flag=checkFile(); // flag==1 procitaj sve accounte, flag==0 pravi datetku sa samo admin account
-     // r+ stavlja pokazivac na pocetak datoteke
 
-    if(flag)
+    int status =  checkFile();
+    FILE *fp=fopen("account.txt","r+");
+    if(status==0)
     {
-        FILE *fp=fopen("account.txt","r+");
-
-        char name[15+1], surname[15+1], pin[4+1];
-        char group;
-        while(fscanf(fp,"%d %s %s %s",&group,name,surname,pin)==4)
-        {
-
-            ACCOUNT *novi=setNode(group,name,surname,pin);
-
-            if(*head==0)
-                *head=novi;
-            else
+        fprintf(fp,"1 admin admin 0000");
+        fclose(fp);
+        if(!strcmp(name,"admin") && !strcmp(surname,"admin") && !strcmp(pin,"0000"))
             {
-                novi->next=*head;
-                *head=novi;
+                *flag=1;
+                return 1;
+            }
+        else
+            return 0;
+    }
+    else
+    {
+        char name1[15+1], surname1[15+1], pin1[4+1];
+        char type;
+
+        while(fscanf(fp,"%d %s %s %s",&type,name1,surname1,pin1)==4)
+        {
+            if(!strcmp(name,name1) && !strcmp(surname,surname1) && !strcmp(pin,pin1))
+            {
+                *flag=type;
+                fclose(fp);
+                return 1;
             }
         }
         fclose(fp);
-
+        return 0;
     }
-    else
-       *head=setNode(1,"admin","admin","0000");
 
 }
 
-// searchList(ACCOUNT *head)
-int login()
+int login(int *flag)       // return 1 uspjesan login else 0
 {
 
+    char name[15+1], surname[15+1], pin[4+1];
+    printf("Name: ");
+    gets(name);
+    printf("Surname: ");
+    gets(surname);
+    do{
+    printf("PIN: ");
+    gets(pin);
+    }while(strlen(pin)!=4); //treba uslov i da nema slova
 
-    ACCOUNT *head=0;
-    fillAccounts(&head);
-
-    printf("%s %s",head->next->name,head->next->pin);
-
-
+   return checkAccount(name,surname,pin,flag);
 }
 
 
