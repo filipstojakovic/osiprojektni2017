@@ -3,7 +3,7 @@ int main()
 {
     int flag=0;         //1 admin ili 0- analiticar
     while(!login(&flag))
-        printf("nisu dobri podatci!\n");
+        printf("nisu dobri podaci!\n");
 
     int cmd;
     // system("cls"); brise sve sa konzole
