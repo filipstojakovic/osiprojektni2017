@@ -54,7 +54,7 @@ char ponovo_meni1(char c)
         {
             gets(q);
         scanf("%s",&t);
-        if(strlen(t)>1 || provera_slova22(t[0])==0 )
+        if(strlen(t)>1 || provera_slova11(t[0])==0 )
         printf("False letter!\n");
         else f=1;
         }while(f==0);

@@ -36,7 +36,10 @@ void adminMenu()
     }
     else if(c[0]=='c')
     {
-        printf("acccoutn men\n\n\n");
+        if(rad_sa_account()==0)
+        signin();
+        else
+            printf("delete profile\n");
         c[0]=ponovo_meni(t[0]);
     }
     gets(q);
@@ -53,7 +56,6 @@ char ponovo_meni(char c)
     printf("[n] - no\n");
     do
         {
-            gets(q);
         scanf("%s",&t);
         if(strlen(t)>1 || provera_slova22(t[0])==0 )
         printf("False letter!\n");
@@ -76,4 +78,30 @@ int provera_slova22(char s)
     if( s=='y' ||  s=='n' )
             return 1;
    return 0;
+}
+
+int rad_sa_account()
+{
+    char t[111],q[111];
+    int f=0,k;
+    printf("[d]- delete account \n");
+    printf("[n]- create new account \n");
+    do
+        {
+            gets(q);
+        scanf("%s",&t);
+        if(strlen(t)>1 || provera_slova123(t[0])==0 )
+        printf("False letter!\n");
+        else f=1;
+        }while(f==0);
+        if(t[0]=='d')
+            return 1;
+    else if(t[0]=='n')
+        return 0;
+}
+int provera_slova123(char s)
+{
+    if( s!='d' &&  s!='n' )
+            return 0;
+   return 1;
 }

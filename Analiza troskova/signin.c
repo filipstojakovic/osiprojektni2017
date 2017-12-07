@@ -17,13 +17,13 @@ void signin()
         printf("Enter Name: ");
         gets(name);
     }
-    while(!checkString(name));
+    while(checkString(name)==0);
     do
     {
         printf("Enter Surname: ");
         gets(surname);
 
-    }while(!checkString(surname));
+    }while(checkString(surname)==0);
 
     do
     {
@@ -36,7 +36,8 @@ void signin()
 
         printf("Confirm PIN: ");
         gets(pin2);
-
+            if(strcmp(pin,pin2)!=0)
+                printf("Not confirmed !\n");
     }while(strcmp(pin,pin2));
 
     FILE *fp=fopen("account.txt","r+");
@@ -47,30 +48,34 @@ void signin()
 }
 int checkPin(char *pin)
 {
-    int d=strlen(pin);
+    int i,d=strlen(pin);
     if(d!=4)
         return 0;
-    for(int i=0; i<4; i++)
+    for(i=0; i<4; i++)
         if(!(pin[i]>='0' && pin[i]<='9'))
             return 0;
     return 1;
 }
 
-int checkString(char *name)
+int checkString(char *rec)
 {
-    int n=strlen(name);
-    if(n>15)
-        return printf("predugacak string\n"),0;
-    for(int i=0; i<n; i++)
-        if(name[i]>='0' && name[i]<='9')        // provjerava da li ima brojeva u stringu
-        {                                                   /// treba bolji uslov da nema i simbola !!!!!
-            printf("Podaci nisu dobro uneseni\n");
-            return 0;
+   int i,pom;
+    for(i=0;i<strlen(rec);i++)
+    {
+        pom=(int)rec[i];
+        if(pom<65 ||  pom>122)
+        {
+                   printf("Only letters allowed !\n");
+                    return 0;
         }
-    return 1;
-
+       if(pom>90 && pom<97)
+      {
+       printf("Only letters allowed !\n");
+       return 0;
+   }
 }
-
+return 1;
+}
 
 
 

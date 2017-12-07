@@ -7,6 +7,8 @@
 
 int main()
 {
+    int w=checkFile();
+    printf("%d\n",w);
      pocetno_zaglavlje();
     int flag=0,i=0;         //1 admin ili 0- analiticar
     while(!login(&flag) && i<4)
