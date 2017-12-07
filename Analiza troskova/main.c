@@ -32,10 +32,8 @@ int main()
     }
     else
     {
-        printf("as admin\n");
+        printf("as administrator !\n");
         adminMenu();
     }
-
-    getchar();
     getchar();
 }
