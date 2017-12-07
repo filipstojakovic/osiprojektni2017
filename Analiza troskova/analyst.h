@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+int provera_slova1(char s);
+int provera_slova222(char s);
 void analystMenu();
 
 

@@ -8,6 +8,8 @@
 int checkFile();
 int checkAccount(char *,char* , char *, int *);
 int login(int *);
-
+void pocetno_zaglavlje();
+int provjera_imena(char *);
+int provjera_pina(char *);
 
 #endif // LOGIN_H

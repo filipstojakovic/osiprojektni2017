@@ -36,3 +36,47 @@
 1512592292 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\signin.c
 	"signin.h"
 
+1512669629 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\admin.c
+	"admin.h"
+
+1512670416 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\admin.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1512669698 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\analyst.c
+	"analyst.h"
+
+1512669698 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\analyst.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1512668890 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\login.c
+	"login.h"
+
+1512668890 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\login.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1512668890 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\main.c
+	"login.h"
+	"admin.h"
+	"analyst.h"
+	"signin.h"
+
+1512666421 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\signin.h
+	<stdio.h>
+	<string.h>
+
+1512666421 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\readfiles.c
+	"readfiles.h"
+
+1512666421 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\readfiles.h
+	<stdio.h>
+	<dirent.h>
+
+1512666421 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\signin.c
+	"signin.h"
+

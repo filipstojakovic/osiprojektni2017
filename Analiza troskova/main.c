@@ -7,22 +7,34 @@
 
 int main()
 {
-    fileList();
-    system("pause");
-    int flag=0;         //1 admin ili 0- analiticar
-    while(!login(&flag))
-        printf("nisu dobri podaci!\n");
-
-    // signin();
+     pocetno_zaglavlje();
+    int flag=0,i=0;         //1 admin ili 0- analiticar
+    while(!login(&flag) && i<4)
+       {
+           printf("*=============================================================================*\n");
+            // signin();
     /// signin treba staviti na pravo mjesto
-    int cmd;
+	   printf("False log in!\n");
+           i++;
+           printf("Attempts left : %d\n",(3-i));
+           if(i==3)
+           {
+            printf("Sorry to many attempts !\n");
+            return 0;
+           }
+       }
     // system("cls"); brise sve sa konzole
-    printf("ulogovan! ");
-     if(flag==1)
-        adminMenu();
+    printf("You are logged in successfully ");
+    if(flag==0)
+    {
+        printf("as analiticar !\n");
+         analystMenu();
+    }
     else
-        analystMenu();
-
+    {
+        printf("as admin\n");
+        adminMenu();
+    }
 
     getchar();
     getchar();

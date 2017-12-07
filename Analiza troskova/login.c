@@ -51,15 +51,63 @@ int checkAccount(char *name,char* surname, char *pin, int *flag)
 int login(int *flag)       // return 1 uspjesan login else 0
 {
 
-    char name[15+1], surname[15+1], pin[4+1];
-    printf("Name: ");
-    gets(name);
+    char name[15+1], surname[15+1], pin[4+1],name1[15+1], surname1[15+1];
+    do{
+            printf("Name: ");
+            gets(name);
+    }while(provjera_imena(name)!=1);
+    strcpy(name1,name);
+    do{
     printf("Surname: ");
     gets(surname);
+    }while(provjera_imena(surname)!=1);
+    strcpy(surname1,surname);
     do{
     printf("PIN: ");
     gets(pin);
-    }while(strlen(pin)!=4); //treba uslov i da nema slova
-
-   return checkAccount(name,surname,pin,flag);
+    }while(provjera_pina(pin)!=1);
+   return checkAccount(name1,surname1,pin,flag);
+}
+int provjera_pina(char *rec)
+{
+    int i,pom;
+    if(strlen(rec)!=4)
+    {
+        printf("It has to be number with four digits !\n");
+        return 0;
+    }
+    for(i=0;i<strlen(rec);i++)
+    {
+        pom=(int)rec[i];
+        if(pom<47 ||  pom>58)
+   {
+       printf("Only numbers allowed !\n");
+       return 0;
+   }
+}
+return 1;
+}
+int provjera_imena(char *rec)
+{
+   int i,pom;
+    for(i=0;i<strlen(rec);i++)
+    {
+        pom=(int)rec[i];
+        if(pom<65 ||  pom>122)
+        {
+                   printf("Only letters allowed !\n");
+                    return 0;
+        }
+       if(pom>90 && pom<97)
+      {
+       printf("Only letters allowed !\n");
+       return 0;
+   }
+}
+return 1;
+}
+void pocetno_zaglavlje()
+{
+    printf("*=============================================================================*\n");
+    printf("                                  -LOG IN-                                     \n");
 }
