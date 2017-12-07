@@ -7,6 +7,8 @@
 
 int main()
 {
+    fileList();
+    system("pause");
     int flag=0;         //1 admin ili 0- analiticar
     while(!login(&flag))
         printf("nisu dobri podaci!\n");

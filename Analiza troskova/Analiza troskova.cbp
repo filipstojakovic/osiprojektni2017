@@ -46,6 +46,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="readfiles.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="readfiles.h" />
 		<Unit filename="signin.c">
 			<Option compilerVar="CC" />
 		</Unit>

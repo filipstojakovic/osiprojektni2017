@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1512590639 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\main.c
+1512664649 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\main.c
 	"login.h"
 	"admin.h"
 	"analyst.h"
+	"signin.h"
 
 1512588817 c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\login.h
 	<stdio.h>
@@ -27,4 +28,11 @@
 
 1512588894 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\login.c
 	"login.h"
+
+1512589996 c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\signin.h
+	<stdio.h>
+	<string.h>
+
+1512592292 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\signin.c
+	"signin.h"
 
