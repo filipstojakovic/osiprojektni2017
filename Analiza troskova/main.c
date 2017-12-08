@@ -29,16 +29,19 @@ int main()
             return 0;
            }
        }
-    // system("cls"); brise sve sa konzole
+
     printf("You are logged in successfully ");
+
     if(flag==0)
     {
         printf("as analiticar !\n");
+         system("cls");
          analystMenu();
     }
     else
     {
         printf("as administrator !\n");
+         system("cls");
         adminMenu();
     }
     getchar();
