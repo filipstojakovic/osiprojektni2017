@@ -110,7 +110,7 @@ void delete_account()//mora neko uraditi citavo kako spada
 {
       FILE *fp;
       char name[15+1], surname[15+1], pin[4+1],name1[15+1], surname1[15+1];
-      int type,k=0,f;
+      int type,k=0,f=0;
       printf("Chose  account to delete :\n");
       getchar();
       do{
