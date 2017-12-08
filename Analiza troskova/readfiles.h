@@ -4,18 +4,14 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <unistd.h>
-//neke biblioteke za rad sa fajlovima/folderima
-//#include <stdlib.h>
-//#include <string.h>
-//#include <sys/types.h>
-//#include <dirent.h>
+#include <string.h>
 
-//#include <errno.h>
+//#include <errno.h> za sad ne treba
 
 
 int fileList();     // cita sve fajlove iz foldera " racuni "
-int findFile(char *);
+FILE* findFile(char *);         // pronalazi fajl otvara ga i vraca pokazivac na taj otvoreni fajl
 
-void renameFile(char *findname);
+void renameFile(char *findname);        // pronadji fajl (findname) i promjeni naziv
 
 #endif // READFILES_H

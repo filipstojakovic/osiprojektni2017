@@ -40,18 +40,18 @@ void renameFile(char *findname) // trenutno se ne koristi findname u funkciji
     {
         while((dp=readdir (dir)) != NULL)       // cita redom fajlove i smjesta u strukturu dp
         {
-            if(strcmp(dp->d_name,findname)==0)      /// treba malo srediti
+            if(strcmp(dp->d_name,findname)==0)      /// treba malo srediti tijelo
             {
                 char newname[20];
-                char tmp[50]="./racuni/";           // zbog ugradjene funkcije "rename()" treba put do fajla
-                char tmp1[50]="./racuni/";
+                char fullpath[50]="./racuni/";           // zbog ugradjene funkcije "rename()" treba put do fajla
+                char fullpath1[50]="./racuni/";
                 printf("Chose new name: ");
                 gets(newname);
                 strcat(newname,".txt");             /// treba uslova ako je .txt ili .bin
-                strcat(tmp,dp->d_name);
-                strcat(tmp1,newname);
+                strcat(fullpath,dp->d_name);
+                strcat(fullpath1,newname);
 
-                if(rename(tmp,tmp1)==0)
+                if(rename(fullpath,fullpath1)==0)
                     printf("renamed");
                 else
                     printf("NOT renamed");
@@ -64,4 +64,45 @@ void renameFile(char *findname) // trenutno se ne koristi findname u funkciji
     }
      closedir(dir);
 }
+
+FILE* findFile(char *d_name)
+{
+    FILE *fp;
+    DIR *dir;
+    struct dirent *dp;
+    if ((dir= opendir("./racuni")) == NULL)
+    {
+        printf("Cannot open ./racuni directory\n");
+        return 0;
+    }
+    else
+    {
+        while((dp=readdir(dir)) != NULL)       // cita redom fajlove i smjesta u strukturu dp
+        {
+            if(strcmp(dp->d_name,d_name)==0)
+            {
+                char fullpath[50]="./racuni/";
+                strcat(fullpath,dp->d_name);
+               // printf("%s\n",fullpath);
+                if(fp=fopen(fullpath,"r+"))
+                    {
+                        fseek(fp,0,SEEK_END);
+                     //   printf("%d\n",ftell(fp));
+                    }
+                else
+                    printf("NOT opened\n");
+
+                return fp;
+            }
+        }
+    }
+    return 0;
+}
+
+
+
+
+
+
+
 

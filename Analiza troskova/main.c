@@ -2,13 +2,17 @@
 #include "admin.h"
 #include "analyst.h"
 #include "signin.h"
+#include "readfiles.h"
 // ovakav komentar je za opis funkcije ili neke komande
 /// ovakav komentar je ako treba neku izmjenu napraviti
 
 int main()
 {
-    int w=checkFile();
-    printf("%d\n",w);
+    FILE *fp;
+    fp=findFile("racun123.txt");
+    fprintf(fp," Fipa is the best!");
+    fclose(fp);
+    system("pause");
      pocetno_zaglavlje();
     int flag=0,i=0;         //1 admin ili 0- analiticar
     while(!login(&flag) && i<4)

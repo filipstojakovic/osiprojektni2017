@@ -1,39 +1,44 @@
 # depslib dependency file v1.0
-1512664649 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\main.c
+1512729865 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\main.c
 	"login.h"
 	"admin.h"
 	"analyst.h"
 	"signin.h"
+	"readfiles.h"
 
-1512588817 c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\login.h
+1512683813 c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\login.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1512588894 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\admin.c
+1512726623 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\admin.c
 	"admin.h"
+	<string.h>
+	<stdio.h>
 
-1512589003 c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\admin.h
+1512726623 c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\admin.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
-
-1512588894 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\analyst.c
-	"analyst.h"
-
-1512588817 c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\analyst.h
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-
-1512588894 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\login.c
+	"signin.h"
 	"login.h"
 
-1512589996 c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\signin.h
+1512726623 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\analyst.c
+	"analyst.h"
+
+1512683813 c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\analyst.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1512683813 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\login.c
+	"login.h"
+
+1512683813 c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\signin.h
 	<stdio.h>
 	<string.h>
 
-1512592292 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\signin.c
+1512726623 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\signin.c
 	"signin.h"
 
 1512669629 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\admin.c
@@ -79,4 +84,13 @@
 
 1512666421 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\signin.c
 	"signin.h"
+
+1512730453 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\readfiles.c
+	"readfiles.h"
+
+1512730562 c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\readfiles.h
+	<stdio.h>
+	<dirent.h>
+	<unistd.h>
+	<string.h>
 
