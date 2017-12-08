@@ -11,14 +11,43 @@ int checkFile()    // provjeri da li postoji datoteka account.txt
     else
         return 0;
 }
-
+int checkFile1()
+{
+     FILE *fp;
+    if( fp=fopen("account1.txt","r"))
+    {
+        fclose(fp);
+        return 1;
+    }
+    else
+        return 0;
+}
 int checkAccount(char *name,char* surname, char *pin, int *flag)
 {
 
     int status =  checkFile();
-    FILE *fp=fopen("account.txt","r+");
-    if(status==0)
-    {
+    int s=checkFile1();
+    FILE *fp1=fopen("account1.txt","r+");
+        if(s==1)
+            {
+         FILE *fp1=fopen("account1.txt","r+");
+        char name1[15+1], surname1[15+1], pin1[4+1];
+        int type;
+
+        while(fscanf(fp1,"%d %s %s %s",&type,name1,surname1,pin1)==4)
+        {
+            if(!strcmp(name,name1) && !strcmp(surname,surname1) && !strcmp(pin,pin1))
+            {
+                *flag=type;
+                fclose(fp1);
+                return 1;
+            }
+        }
+        fclose(fp1);
+        return 0;
+    }
+        else{
+            FILE *fp=fopen("account.txt","r+");
         fprintf(fp,"1 admin admin 0000");
         fclose(fp);
         if(!strcmp(name,"admin") && !strcmp(surname,"admin") && !strcmp(pin,"0000"))
@@ -28,24 +57,7 @@ int checkAccount(char *name,char* surname, char *pin, int *flag)
             }
         else
             return 0;
-    }
-    else
-    {
-        char name1[15+1], surname1[15+1], pin1[4+1];
-        char type;
-
-        while(fscanf(fp,"%d %s %s %s",&type,name1,surname1,pin1)==4)
-        {
-            if(!strcmp(name,name1) && !strcmp(surname,surname1) && !strcmp(pin,pin1))
-            {
-                *flag=type;
-                fclose(fp);
-                return 1;
-            }
         }
-        fclose(fp);
-        return 0;
-    }
 }
 
 int login(int *flag)       // return 1 uspjesan login else 0

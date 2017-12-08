@@ -1,6 +1,7 @@
 #include "admin.h"
 #include <string.h>
 #include <stdio.h>
+#include "login.h"
 void adminMenu()
 {
     char c[200],t[200],q[200];
@@ -107,59 +108,91 @@ int provera_slova123(char s)
 }
 void delete_account()//mora neko uraditi citavo kako spada
 {
-    FILE *fp;
+      FILE *fp;
+      char name[15+1], surname[15+1], pin[4+1],name1[15+1], surname1[15+1];
+      int type;
+      printf("Chose  account to delete :\n");
+      getchar();
+      do{
+            printf("Name: ");
+            gets(name);
+    }while(provjera_imena(name)!=1);
+    strcpy(name1,name);
+    do{
+    printf("Surname: ");
+    gets(surname);
+    }while(provjera_imena(surname)!=1);
+    strcpy(surname1,surname);
+    do{
+    printf("PIN: ");
+    gets(pin);
+    }while(provjera_pina(pin)!=1);
+    do{
+        printf("Type: ");
+        scanf("%d",&type);
+    }while(type<0 || type>1);
+    char tt[20]={};
+    tt[0]=(char)type;
      //FILE *fp=fopen("account1.txt","r+");
-    int i=1;
+    int i=1,pom=0,g;
+    printf("ajdee\n");
     if((fp=fopen("account1.txt","r"))==0)
     {
         printf("No folder!\n");
         return;
     }
     else{
-         //FILE *fp=fopen("account.txt","r+");
+        FILE *fp=fopen("account1.txt","r");
+        FILE *fp1=fopen("pomocna.txt","w");
     while(!feof(fp))
     {
-        char z[100];
+        char z[20];
         fscanf(fp,"%s", &z);
         printf("%s ",z);
-        if((i%3)==0)
-            printf("\n");
+        if((i%4)==1)
+           {
+              g=strcmp(z,tt);
+              printf("%d\n",g);
+              if(g==0)
+                pom++;
+              else pom=0;
+              printf("%d\n",pom);
+           }
+           else if((i%4)==2)
+           {
+                g=strcmp(z,name);
+                printf("%d\n",g);
+              if(g==0)
+                pom++;
+              else pom=0;
+              printf("%d\n",pom);
+           }
+           else if((i%4)==3)
+            {
+                g=strcmp(z,surname);
+                printf("%d\n",g);
+              if(g==0)
+                pom++;
+              else pom=0;
+              printf("%d\n",pom);
+           }
+           else if((i%4)==0)
+            {
+                g=strcmp(z,pin);
+                printf("%d\n",g);
+              if(g==0)
+                pom++;
+              else pom=0;
+              printf("%d\n",pom);
+           }
+         if(pom==4)
+         {
+             printf("pronasao sam jeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee!\n");
+         }
         i++;
     }
     fseek( fp, 0, SEEK_SET );
     printf("\n");
-            char w[100];
-    printf("Chose name of account to delete :");//ovdje obrati paznju kako zamagliti ili unistiti tu osobu
-    scanf("%s",&w);
-    while(!feof(fp))
-    {
-        char z[100];
-        int l=1;
-        fscanf(fp,"%s", &z);
-        printf("%s ",z);
-        if(strcmp(z,w)==0)
-        {
-            fseek(fp,-1,SEEK_CUR);
-            fputs(w,fp);
-            fputs(w,fp);
-            fputs(w,fp);
-        }
-        if((l%3)==0)
-            printf("\n");
-        l++;
     }
-    printf("\n");
-        fseek( fp, 0, SEEK_SET );
-     while(!feof(fp))
-    {
-        char z[100];
-        int d;
-        fscanf(fp,"%s", &z);
-        printf("%s ",z);
-        if((d%3)==0)
-            printf("\n");
-        d++;
-    }
-    fclose(fp);
-    }
+    printf("VRACENO U DELETE!\n");
 }

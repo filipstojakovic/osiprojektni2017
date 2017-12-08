@@ -11,5 +11,7 @@ int login(int *);
 void pocetno_zaglavlje();
 int provjera_imena(char *);
 int provjera_pina(char *);
+int checkFile1();
+
 
 #endif // LOGIN_H

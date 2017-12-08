@@ -8,11 +8,11 @@
 
 int main()
 {
-    FILE *fp;
+   /* FILE *fp;
     fp=findFile("racun123.txt");
     fprintf(fp," Fipa is the best!");
     fclose(fp);
-    system("pause");
+    system("pause");*/
      pocetno_zaglavlje();
     int flag=0,i=0;         //1 admin ili 0- analiticar
     while(!login(&flag) && i<4)
