@@ -110,7 +110,7 @@ void delete_account()//mora neko uraditi citavo kako spada
 {
       FILE *fp;
       char name[15+1], surname[15+1], pin[4+1],name1[15+1], surname1[15+1];
-      int type,k=0;
+      int type,k=0,f;
       printf("Chose  account to delete :\n");
       getchar();
       do{
@@ -131,11 +131,10 @@ void delete_account()//mora neko uraditi citavo kako spada
         printf("Type: ");
         scanf("%d",&type);
     }while(type<0 || type>1);
-    char tt[20]={};
-    tt[0]=(char)type;
+    char tt[2]={0}, s1[20],s2[20],s3[20],s4[20];
      //FILE *fp=fopen("account1.txt","r+");
-    int i=1,pom=0,g,m;
-    printf("ajdee\n");
+    int i=1,pom=0,g,m,promjenljiva=0,prvi;
+
     if((fp=fopen("account1.txt","r"))==0)
     {
         printf("No folder!\n");
@@ -146,59 +145,83 @@ void delete_account()//mora neko uraditi citavo kako spada
         FILE *fp1=fopen("pomocna.txt","w");
     while(!feof(fp))
     {
-        char z[20];
+        char z[20],*s2,*s3,*s4;
         fscanf(fp,"%s", &z);
-        printf("%s ",z);
+        //printf("%s ",z);
         if((i%4)==1)
            {
                m=strlen(z);
-              g=strcmp(z,tt);
-              printf("Da li se poklapa tip %d\n",g);
+               prvi=((int)z[0]-48);
+               if((prvi-type)==0)promjenljiva++;
+              g=(prvi-type);
               if(g!=0)
                 pom++;
               else pom=0;
-              printf("%d\n",pom);
+
            }
            else if((i%4)==2)
            {
-               m=strlen(z);
+                m=strlen(z);
+               s2=(char*)malloc(m);
                 g=strcmp(z,name);
-                printf("Da li se poklapa tip IME %d\n",g);
+                s2=z;
               if(g==0)
                 pom++;
               else pom=0;
-              printf("%d\n",pom);
            }
            else if((i%4)==3)
             {
                 m=strlen(z);
+                s3=(char*)malloc(m);
                 g=strcmp(z,surname);
-                printf("Da li se poklapa PREzime %d\n",g);
+                s3=z;
               if(g==0)
                 pom++;
               else pom=0;
-              printf("%d\n",pom);
            }
            else if((i%4)==0)
             {
                 m=strlen(z);
+                s4=(char*)malloc(m);
+                s4=z;
                 g=strcmp(z,pin);
-                printf("Da li se poklapa  PINNN %d\n",g);
               if(g==0)
                 pom++;
               else pom=0;
-              printf("%d\n",pom);
            }
          if(pom==4)
          {
-             printf("pronasao sam jeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee!\n");
-             //fseek( fp, , SEEK_SET );
+             f++;
+             char j[20];
+             printf("Osoba je obrisana sa liste accaunta !\n");
+             rewind(fp);
+             int br=1;
+           do{
+                fscanf(fp, "%s",j);
+            if(strlen(j)==1 && ((int)j[0]-48)==type)
+            {
+               promjenljiva--;
+               if(promjenljiva==0)
+                  {
+                    fscanf(fp, "%s",j);
+                    fscanf(fp, "%s",j);
+                    fscanf(fp, "%s",j);
+                    }
+            }
+            fputs(j,fp1);
+           fputs(" ",fp1);
+           if(br%4==0)
+            fputs(" ",fp1);
+           br++;
+            }while(feof(fp)==0);
          }
 
         i++;
     }
-    fseek( fp, 0, SEEK_SET );
-    printf("\n");
+    if(f==0)
+        printf("Osoba nije pronadjena \n");
+        fclose(fp);
+    fclose(fp1);
     }
-    printf("VRACENO U DELETE!\n");
+
 }
