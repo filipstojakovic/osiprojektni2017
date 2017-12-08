@@ -110,7 +110,7 @@ void delete_account()//mora neko uraditi citavo kako spada
 {
       FILE *fp;
       char name[15+1], surname[15+1], pin[4+1],name1[15+1], surname1[15+1];
-      int type;
+      int type,k=0;
       printf("Chose  account to delete :\n");
       getchar();
       do{
@@ -134,7 +134,7 @@ void delete_account()//mora neko uraditi citavo kako spada
     char tt[20]={};
     tt[0]=(char)type;
      //FILE *fp=fopen("account1.txt","r+");
-    int i=1,pom=0,g;
+    int i=1,pom=0,g,m;
     printf("ajdee\n");
     if((fp=fopen("account1.txt","r"))==0)
     {
@@ -151,17 +151,19 @@ void delete_account()//mora neko uraditi citavo kako spada
         printf("%s ",z);
         if((i%4)==1)
            {
+               m=strlen(z);
               g=strcmp(z,tt);
-              printf("%d\n",g);
-              if(g==0)
+              printf("Da li se poklapa tip %d\n",g);
+              if(g!=0)
                 pom++;
               else pom=0;
               printf("%d\n",pom);
            }
            else if((i%4)==2)
            {
+               m=strlen(z);
                 g=strcmp(z,name);
-                printf("%d\n",g);
+                printf("Da li se poklapa tip IME %d\n",g);
               if(g==0)
                 pom++;
               else pom=0;
@@ -169,8 +171,9 @@ void delete_account()//mora neko uraditi citavo kako spada
            }
            else if((i%4)==3)
             {
+                m=strlen(z);
                 g=strcmp(z,surname);
-                printf("%d\n",g);
+                printf("Da li se poklapa PREzime %d\n",g);
               if(g==0)
                 pom++;
               else pom=0;
@@ -178,8 +181,9 @@ void delete_account()//mora neko uraditi citavo kako spada
            }
            else if((i%4)==0)
             {
+                m=strlen(z);
                 g=strcmp(z,pin);
-                printf("%d\n",g);
+                printf("Da li se poklapa  PINNN %d\n",g);
               if(g==0)
                 pom++;
               else pom=0;
@@ -188,7 +192,9 @@ void delete_account()//mora neko uraditi citavo kako spada
          if(pom==4)
          {
              printf("pronasao sam jeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee!\n");
+             //fseek( fp, , SEEK_SET );
          }
+
         i++;
     }
     fseek( fp, 0, SEEK_SET );
