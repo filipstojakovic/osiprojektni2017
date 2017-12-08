@@ -39,7 +39,7 @@ void adminMenu()
         if(rad_sa_account()==0)
         signin();
         else
-            printf("delete profile\n");
+           delete_account();
         c[0]=ponovo_meni(t[0]);
     }
     gets(q);
@@ -104,4 +104,62 @@ int provera_slova123(char s)
     if( s!='d' &&  s!='n' )
             return 0;
    return 1;
+}
+void delete_account()//mora neko uraditi citavo kako spada
+{
+    FILE *fp;
+     //FILE *fp=fopen("account1.txt","r+");
+    int i=1;
+    if((fp=fopen("account1.txt","r"))==0)
+    {
+        printf("No folder!\n");
+        return;
+    }
+    else{
+         //FILE *fp=fopen("account.txt","r+");
+    while(!feof(fp))
+    {
+        char z[100];
+        fscanf(fp,"%s", &z);
+        printf("%s ",z);
+        if((i%3)==0)
+            printf("\n");
+        i++;
+    }
+    fseek( fp, 0, SEEK_SET );
+    printf("\n");
+            char w[100];
+    printf("Chose name of account to delete :");//ovdje obrati paznju kako zamagliti ili unistiti tu osobu
+    scanf("%s",&w);
+    while(!feof(fp))
+    {
+        char z[100];
+        int l=1;
+        fscanf(fp,"%s", &z);
+        printf("%s ",z);
+        if(strcmp(z,w)==0)
+        {
+            fseek(fp,-1,SEEK_CUR);
+            fputs(w,fp);
+            fputs(w,fp);
+            fputs(w,fp);
+        }
+        if((l%3)==0)
+            printf("\n");
+        l++;
+    }
+    printf("\n");
+        fseek( fp, 0, SEEK_SET );
+     while(!feof(fp))
+    {
+        char z[100];
+        int d;
+        fscanf(fp,"%s", &z);
+        printf("%s ",z);
+        if((d%3)==0)
+            printf("\n");
+        d++;
+    }
+    fclose(fp);
+    }
 }
