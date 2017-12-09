@@ -54,6 +54,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="signin.h" />
+		<Unit filename="strukturaAccount.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

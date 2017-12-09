@@ -8,12 +8,15 @@
 
 int main()
 {
+    detectFormat("KupacA#24.10.2017.csv");
+    system("pause");
 
-     pocetno_zaglavlje();
-     system("cls");
+     //system("cls");
     int flag=0,i=0;
+
     while(!login(&flag) && i<4)
        {
+
            printf("*=============================================================================*\n");
 	   printf("False log in!\n");
            i++;
