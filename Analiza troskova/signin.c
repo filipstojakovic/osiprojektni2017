@@ -4,6 +4,7 @@ void signin()
 {
     char name[15+1], surname[15+1], pin[4+1],pin2[4+1];
     int type;
+    fflush(stdin);
     do
     {
         printf("[1] signin as admin\n"
@@ -40,9 +41,10 @@ void signin()
                 printf("Not confirmed !\n");
     }while(strcmp(pin,pin2));
 
-    FILE *fp=fopen("account1.txt","r+");
+    FILE *fp=fopen("account.txt","r+");
     fseek(fp,0,SEEK_END);
     fprintf(fp," %d %s %s %s",type,name,surname,pin);
+    printf("Sign in successful\n");
     fclose(fp);
 
 }

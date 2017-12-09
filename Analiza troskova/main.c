@@ -6,20 +6,25 @@
 // ovakav komentar je za opis funkcije ili neke komande
 /// ovakav komentar je ako treba neku izmjenu napraviti
 
+/// ubacena struktura ACCOUNTA, treba u kodu stavljati strukturu umjesto puno
 int main()
 {
-   /* FILE *fp;
-    fp=findFile("racun123.txt");
-    fprintf(fp," Fipa is the best!");
-    fclose(fp);
-    system("pause");*/
-     pocetno_zaglavlje();
-    int flag=0,i=0;         //1 admin ili 0- analiticar
-    while(!login(&flag) && i<4)
+//    delete_accountFILIP();
+//    system("pause");
+
+    int flag=0,i=0,c;
+    START:
+     pocetno_zaglavlje(0);
+     printf("[1] Login\n[2] Sign In\nOption: ");
+     do
+     {
+         scanf("%d",&c);
+     }while(c<1 || c>2);
+    system("cls");
+    if(c==1)
+    {while(!login(&flag) && i<4)
        {
-           printf("*=============================================================================*\n");
-            // signin();
-    /// signin treba staviti na pravo mjesto
+
 	   printf("False log in!\n");
            i++;
            printf("Attempts left : %d\n",(3-i));
@@ -44,5 +49,11 @@ int main()
          system("cls");
         adminMenu();
     }
-    getchar();
+    }
+    else
+    {
+        pocetno_zaglavlje(2);
+        signin();
+        goto START;
+    }
 }

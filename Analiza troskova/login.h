@@ -8,7 +8,7 @@
 int checkFile();
 int checkAccount(char *,char* , char *, int *);
 int login(int *);
-void pocetno_zaglavlje();
+void pocetno_zaglavlje(int);
 int provjera_imena(char *);
 int provjera_pina(char *);
 int checkFile1();
