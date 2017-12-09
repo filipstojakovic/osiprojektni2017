@@ -111,7 +111,7 @@ int provera_slova123(char s)
         return 0;
     return 1;
 }
-void delete_account()//mora neko uraditi citavo kako spada
+void delete_account()//moro a neko uraditi citavo kako spada
 {
     FILE *fp;
     char name[15+1], surname[15+1], pin[4+1],name1[15+1], surname1[15+1];
@@ -148,14 +148,14 @@ void delete_account()//mora neko uraditi citavo kako spada
     //FILE *fp=fopen("account1.txt","r+");
     int i=1,pom=0,g,m,promjenljiva=0,prvi;
 
-    if((fp=fopen("account1.txt","r"))==0)
+    if((fp=fopen("account.txt","r"))==0)
     {
         printf("No folder!\n");
         return;
     }
     else
     {
-        FILE *fp=fopen("account1.txt","r");
+        FILE *fp=fopen("account.txt","r");
         FILE *fp1=fopen("pomocna.txt","w");
         while(!feof(fp))
         {
@@ -236,10 +236,26 @@ void delete_account()//mora neko uraditi citavo kako spada
         }
         if(f==0)
             printf("Osoba nije pronadjena \n");
-        fclose(fp);
+            fclose(fp);
         fclose(fp1);
     }
-
+if(f==1)
+     {
+    int ret,ret1,ret2;
+   char oldname[] = "pomocna.txt";
+   char oldname1[] = "pomocna.txt";
+   char newname[] = "accaunt.txt";
+   char newname1[] = "pomocna.txt";
+   char pom[]= "pom.txt";
+    ret1=rename(newname,pom);
+   ret = rename(oldname, newname1);
+   ret2=rename(pom,oldname1);
+   if(ret == 0) {
+      printf("File renamed successfully");
+   } else {
+      printf("Error: unable to rename the file");
+   }
+     }
 }
 
 
@@ -266,7 +282,8 @@ int delete_accountFILIP()      /// radi, ali nisam bas zadovoljan
 
             fseek(fp,-d,SEEK_CUR);
             fflush(stdin);
-            for(int i=0; i<d; i++)
+            int i;
+            for(i=0; i<d; i++)
                 fprintf(fp," ");
 
             fclose(fp);

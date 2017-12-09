@@ -6,25 +6,15 @@
 // ovakav komentar je za opis funkcije ili neke komande
 /// ovakav komentar je ako treba neku izmjenu napraviti
 
-/// ubacena struktura ACCOUNTA, treba u kodu stavljati strukturu umjesto puno
 int main()
 {
-//    delete_accountFILIP();
-//    system("pause");
 
-    int flag=0,i=0,c;
-    START:
-     pocetno_zaglavlje(0);
-     printf("[1] Login\n[2] Sign In\nOption: ");
-     do
-     {
-         scanf("%d",&c);
-     }while(c<1 || c>2);
-    system("cls");
-    if(c==1)
-    {while(!login(&flag) && i<4)
+     pocetno_zaglavlje();
+     system("cls");
+    int flag=0,i=0;
+    while(!login(&flag) && i<4)
        {
-
+           printf("*=============================================================================*\n");
 	   printf("False log in!\n");
            i++;
            printf("Attempts left : %d\n",(3-i));
@@ -49,11 +39,5 @@ int main()
          system("cls");
         adminMenu();
     }
-    }
-    else
-    {
-        pocetno_zaglavlje(2);
-        signin();
-        goto START;
-    }
+    getchar();
 }

@@ -117,11 +117,9 @@ int provjera_imena(char *rec)
     }
     return 1;
 }
-void pocetno_zaglavlje(int i)
+void pocetno_zaglavlje()
 {
     printf("*=============================================================================*\n");
-    if(i==1)
         printf("                                  -LOG IN-                                     \n");
-    else if(i==2)
-        printf("                                 -SIGN IN-                                     \n");
+
 }
