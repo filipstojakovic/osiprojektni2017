@@ -1,5 +1,5 @@
 #include "login.h"
-
+#include "strukturaAccount.h"
 int checkFile()    // provjeri da li postoji datoteka account.txt
 {
     FILE *fp;
@@ -20,14 +20,13 @@ int checkAccount(char *name,char* surname, char *pin, int *flag)
     FILE *fp1=fopen("account.txt","r+");
     if(status==1)
     {
-        char name1[15+1], surname1[15+1], pin1[4+1];
-        int type;
+        ACCOUNT acc1;
 
-        while(fscanf(fp1,"%d %s %s %s",&type,name1,surname1,pin1)==4)
+        while(fscanf(fp1,"%d %s %s %s",&acc1.type,acc1.name,acc1.surname,acc1.pin)==4)
         {
-            if(!strcmp(name,name1) && !strcmp(surname,surname1) && !strcmp(pin,pin1))
+            if(!strcmp(name,acc1.name) && !strcmp(surname,acc1.surname) && !strcmp(pin,acc1.pin))
             {
-                *flag=type;
+                *flag=acc1.type;
                 fclose(fp1);
                 return 1;
             }

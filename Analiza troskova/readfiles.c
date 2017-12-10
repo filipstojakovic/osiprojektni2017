@@ -142,9 +142,7 @@ int detectFormat(char *d_name)
     }
 
     fclose(fp);
-
-
-    return 10;
+    return 0;
 }
 
 

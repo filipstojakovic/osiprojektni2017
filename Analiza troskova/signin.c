@@ -1,49 +1,51 @@
 #include "signin.h"
-
+#include "strukturaAccount.h"
 void signin()
 {
-    char name[15+1], surname[15+1], pin[4+1],pin2[4+1];
-    int type;
+    ACCOUNT acc;
+//    char name[15+1], surname[15+1], pin[4+1],
+char pin2[4+1];
+//    int type;
     fflush(stdin);
     do
     {
         printf("[1] signin as admin\n"
                 "[0] signin as analyst\n"
                 "Option: ");
-        scanf("%d",&type);
-    }while(type<0 || type>1);
+        scanf("%d",&acc.type);
+    }while(acc.type<0 || acc.type>1);
     fflush(stdin);
     do
     {
         printf("Enter Name: ");
-        gets(name);
+        gets(acc.name);
     }
-    while(checkString(name)==0);
+    while(checkString(acc.name)==0);
     do
     {
         printf("Enter Surname: ");
-        gets(surname);
+        gets(acc.surname);
 
-    }while(checkString(surname)==0);
+    }while(checkString(acc.surname)==0);
 
     do
     {
         do
         {
             printf("Enter PIN: ");
-            gets(pin);
+            gets(acc.pin);
         }
-        while(!checkPin(pin));
+        while(!checkPin(acc.pin));
 
         printf("Confirm PIN: ");
         gets(pin2);
-            if(strcmp(pin,pin2)!=0)
+            if(strcmp(acc.pin,pin2)!=0)
                 printf("Not confirmed !\n");
-    }while(strcmp(pin,pin2));
+    }while(strcmp(acc.pin,pin2));
 
     FILE *fp=fopen("account.txt","r+");
     fseek(fp,0,SEEK_END);
-    fprintf(fp," %d %s %s %s",type,name,surname,pin);
+    fprintf(fp," %d %s %s %s",acc.type,acc.name,acc.surname,acc.pin);
     printf("Sign in successful\n");
     fclose(fp);
 
