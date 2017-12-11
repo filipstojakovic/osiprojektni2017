@@ -50,11 +50,15 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="readfiles.h" />
+		<Unit filename="readformats.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="readformats.h" />
 		<Unit filename="signin.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="signin.h" />
-		<Unit filename="strukturaAccount.h" />
+		<Unit filename="strukture.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

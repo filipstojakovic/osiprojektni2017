@@ -3,7 +3,7 @@
 #include "analyst.h"
 #include "signin.h"
 #include "readfiles.h"
-#include "format1.h"
+#include "readformats.h"
 #include "strukture.h"
 // ovakav komentar je za opis funkcije ili neke komande
 /// ovakav komentar je ako treba neku izmjenu napraviti
@@ -11,11 +11,11 @@
 int main()
 {
 
-   POD pod= readFormat1("format1.txt"); // procitaj racun koji je oblika format 1
-    printf("Name: %s\nDatum: %d/%d/%d\n",pod.name,pod.dan,pod.mj,pod.god);
-    for(int i=0;i<pod.n;i++)
-        printf("%s %s %d %d %d\n",pod.art[i].name,pod.art[i].barcode,pod.art[i].kol,pod.art[i].cijena,pod.art[i].total);
-    system("pause");
+//   POD pod= readFormat1("format1.txt"); // procitaj racun koji je oblika format 1
+//    printf("Name: %s\nDatum: %d/%d/%d\n",pod.name,pod.dan,pod.mj,pod.god);
+//    for(int i=0;i<pod.n;i++)
+//        printf("%s %s %d %d %d\n",pod.art[i].name,pod.art[i].barcode,pod.art[i].kol,pod.art[i].cijena,pod.art[i].total);
+//    system("pause");
 
      //system("cls");
     int flag=0,i=0;
