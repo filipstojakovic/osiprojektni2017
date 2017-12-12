@@ -25,8 +25,10 @@ typedef struct podaci
     char surname[15+1] ;
     unsigned char dan,mj;
     unsigned int god;
-    int total;
     ARTIKL *art;
     int n;
+    int total;      // without PDV
+    float PDV;
+    float sum;  // with PDV
 }POD;
 #endif // STRUKTURAACCOUNT_H_INCLUDED

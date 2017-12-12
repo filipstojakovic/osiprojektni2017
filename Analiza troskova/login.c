@@ -1,5 +1,5 @@
 #include "login.h"
-#include "strukturaAccount.h"
+#include "strukture.h"
 int checkFile()    // provjeri da li postoji datoteka account.txt
 {
     FILE *fp;

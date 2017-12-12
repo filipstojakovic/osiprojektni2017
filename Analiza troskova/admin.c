@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "login.h"
-#include "strukturaAccount.h"
+#include "strukture.h"
 void adminMenu()
 {
     char c[200],t[200],q[200];
