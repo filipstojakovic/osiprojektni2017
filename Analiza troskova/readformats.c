@@ -56,6 +56,8 @@ POD readFormat1(char* d_name) // cita sve podatke iz racuna formata 1
 
     fscanf(fp,"%d",&pod.total);
     pod.n=i;    // broj artikala
+    fscanf(fp,"%f",&pod.PDV);
+    printf("PDVVV:%f",pod.PDV);
     fclose(fp);
 
     return pod;

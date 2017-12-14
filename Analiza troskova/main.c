@@ -10,7 +10,7 @@
 
 int main()
 {
-    int flag=0,i=3;
+    int flag=0,i=3,lista;
 
     while(!login(&flag) && i>0)
        {
@@ -33,6 +33,11 @@ int main()
     {
         printf("as analiticar !\n");
          system("cls");
+         lista=fileList();
+         if(i==0)
+            printf("canot open file in directori! \n");
+         else
+            printf("CAN OPEN FILE IN DIRECORI!\n");
          analystMenu();
     }
     else

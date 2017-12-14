@@ -66,7 +66,7 @@ char ponovo_meni( )   ///funkcija preko koje se ponovo vraca u meni ili izlazi i
     do
     {
         fflush(stdin);
-        printf("Do you want to go back to manuuu ? \n");
+        printf("Do you want to go back to manu ? \n");
         printf("[y] - yes\n");
         printf("[n] - no\n");
         printf("Option: ");

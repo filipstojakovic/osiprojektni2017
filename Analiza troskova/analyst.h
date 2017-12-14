@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "admin.h"
+#include "readfiles.h"
 int provera_slova1(char );  // za Analyst menu
 int provera_slova11(char );
 void analystMenu();
