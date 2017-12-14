@@ -55,7 +55,7 @@ int login(int *flag)       // return 1 uspjesan login else 0
 
     char name[15+1], surname[15+1], pin[4+1],name1[15+1], surname1[15+1];
     fflush(stdin);
-    pocetno_zaglavlje(1);
+    pocetno_zaglavlje();
     do
     {
         printf("Name: ");

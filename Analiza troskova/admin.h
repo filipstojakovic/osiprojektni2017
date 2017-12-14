@@ -7,13 +7,12 @@
 #include "signin.h"
 #include "login.h"
 
-int provera_slova2(char );
-int provera_slova22(char );
+int provera_slova(char );  // za admin menu
+int provera_slovaYN(char ); // yes || no
+int provjera_slovaDC(char ); // 'd' or 'c'
 void adminMenu();
-char ponovo_meni(char );
+char ponovo_meni();
 int rad_sa_account();
-int provera_slova123(char );
-void delete_account();
-int delete_accountFILIP();
+int delete_account();
 
 #endif // ADMIN_H

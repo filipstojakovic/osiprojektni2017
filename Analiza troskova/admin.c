@@ -3,125 +3,148 @@
 #include <stdio.h>
 #include "login.h"
 #include "strukture.h"
-void adminMenu()   ///
+void adminMenu()
 {
-    char c[20],t[20],q[20];
+    char c,ch;
     printf("*=============================================================================*\n");
     printf("                    Welcome Administrator! \n\n\n");
     do
     {
+        fflush(stdin);
         printf("*=============================================================================*\n");
         printf("[c] - account managment\n");
         printf("[v] - currency settings\n");
         printf("[h] - help menu\n");
         printf("[e] - exit\n");
-        scanf("%s",&c);
-        strcpy(t,c);
-        if(strlen(c)>1 || provera_slova2(c[0])!=1)//provjerava da li je unesono slovo jedno od ponudjenih
+        printf("Option: ");
+        scanf("%c",&c);
+        scanf("%c",&ch);
+        if(ch!='\n')
         {
+            printf("pogresna opcija!\n");
+            continue;
+        }
 
+        if(provera_slova(c)!=1)    //provjerava da li je unesono slovo jedno od ponudjenih
+        {
             printf("Unknown letter !\n");
         }
-        else if(c[0]=='e')//provjera za izlaz
+        else if(c=='e')//provjera za izlaz
         {
             printf("GOOOOODBAYYY! \n");
 
         }
-        else if(c[0]=='h')
+        else if(c=='h')
         {
             printf("help\n\n\n");
-            c[0]=ponovo_meni(t[0]);
+            c=ponovo_meni();
         }
-        else if(c[0]=='v')
+        else if(c=='v')
         {
             printf("valuta\n\n\n");
-            c[0]=ponovo_meni(t[0]);
+            c=ponovo_meni();
         }
-        else if(c[0]=='c')
+        else if(c=='c')
         {
             if(rad_sa_account()==0)
                 signin();
             else
-               delete_accountFILIP();
-            c[0]=ponovo_meni(t[0]);
+                delete_account();
+            c=ponovo_meni();
         }
-        gets(q);
+        //gets(q);
     }
-    while(c[0]!='e');
+    while(c!='e');
     printf("                                Exit\n");
     printf("*=============================================================================*\n");
 }
-char ponovo_meni(char c)   ///funkcija preko koje se ponovo vraca u meni ili izlazi iz programa
+
+
+char ponovo_meni( )   ///funkcija preko koje se ponovo vraca u meni ili izlazi iz programa
 {
-    char t[111],s,q[111];
-    int f=0;
-    printf("Do you want to go back to manu ? \n");
-    printf("[y] - yes\n");
-    printf("[n] - no\n");
+    char c,ch,s;
     do
     {
-        scanf("%s",&t);
-        if(strlen(t)>1 || provera_slova22(t[0])==0 )
-            printf("False letter!\n");
-        else f=1;
-    }
-    while(f==0);
-    if(t[0]=='y')
-        s='a';
-    else if(t[0]=='n')
+        fflush(stdin);
+        printf("Do you want to go back to manuuu ? \n");
+        printf("[y] - yes\n");
+        printf("[n] - no\n");
+        printf("Option: ");
+        scanf("%c",&c);
+        scanf("%c",&ch);
+        if(ch!='\n' || provera_slovaYN(c)!=1)
+        {
+            printf("Pogresna opcijaaa!\n");
+            continue;
+        }
+
+    }while(ch!='\n' || provera_slovaYN(c)!=1);
+
+    if(c=='y')
+        s='y';
+    else if(c=='n')
         s='e';
-        system("cls");
+    system("cls");
     return s;
 }
-int provera_slova2(char s)  ///funkcija za provjeru slova iz admin_meni
+
+
+int provera_slova(char s)  ///funkcija za provjeru slova iz admin_meni
 {
     if( s!='c'&& s!='v' && s!='h' && s!='e')
         return 0;
     return 1;
 }
-int provera_slova22(char s)  ///funkcija za provjeru slova iz ponovo_meni
+int provera_slovaYN( char s)  ///funkcija za provjeru slova iz ponovo_meni
 {
     if( s=='y' ||  s=='n' )
         return 1;
     return 0;
 }
+int provjera_slovaDC(char c)
+{
+    if(c=='d' || c=='c')
+        return 1;
+    else
+        return 0;
+}
 
 int rad_sa_account()  ///funkcija za upravljanje sa account-om
 {
-    char t[20],q[20];
+//    char t[20],q[20];
+    char c,ch;
     int f=0,k;
-    printf("[d]- delete account \n");
-    printf("[n]- create new account \n");
     do
     {
-        gets(q);
-        scanf("%s",&t);
-        if(strlen(t)>1 || provera_slova123(t[0])==0 )
-            printf("False letter!\n");
-        else f=1;
-    }
-    while(f==0);
-    if(t[0]=='d')
+        fflush(stdin);
+        printf("[d]- delete account \n");
+        printf("[c]- create new account \n");
+        printf("Option: ");
+        scanf("%c",&c);
+        scanf("%c",&ch);
+        if(ch!='\n' || provjera_slovaDC(c)==0 )
+        {
+            printf("Pogresna opcijaaaaa!\n");
+            continue;
+        }
+
+    }while(ch!='\n' || provjera_slovaDC(c)==0);
+
+    if(c=='d')
         return 1;
-    else if(t[0]=='n')
+    else
         return 0;
-}
-int provera_slova123(char s)  ///funkcija za provjera slova u rad_sa_account
-{
-    if( s!='d' &&  s!='n' )
-        return 0;
-    return 1;
 }
 
-int delete_accountFILIP()      ///funkicja za brisanje accounta
+int delete_account()      ///funkicja za brisanje accounta
 {
     int br=0;
     FILE *fp=fopen("account.txt","r+");
     fseek(fp,0,SEEK_SET);
     ACCOUNT tmp, tmp1;
- printf("Chose  account to delete :\n");
-    getchar();
-    do                          //provjera da li je dobro tneseno ime
+    printf("Chose  account to delete :\n");
+    fflush(stdin);
+    do                          //provjera da li je dobro uneseno ime
     {
         printf("Name: ");
         gets(tmp1.name);
@@ -149,20 +172,20 @@ int delete_accountFILIP()      ///funkicja za brisanje accounta
             int i;
             for(i=0; i<d; i++)
                 fprintf(fp," ");
-            printf(" %s %s account successfully deleted !\n",tmp1.name,tmp1.surname);
+            printf("%s %s account successfully deleted !\n",tmp1.name,tmp1.surname);
             fclose(fp);
             return 1;
 
         }
     }
-if(br==0)                           //provjera da li postoji account
-    printf("Unsuccessfully to find account !\n");
+    if(br==0)                           //provjera da li postoji account
+        printf("Unsuccessfully to find account !\n");
 //    fflush(stdin);
 //    fseek(fp,0,SEEK_SET);
 //    while((fscanf(fp,"%d %s %s %s",&tmp.type,tmp.name,tmp.surname,tmp.pin))==4)
 //        printf("%d %s %s %s\n",tmp.type,tmp.name,tmp.surname,tmp.pin);
     fclose(fp);
-     return 0;
+    return 0;
 }
 
 
