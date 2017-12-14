@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include "login.h"
 #include "strukture.h"
-void adminMenu()
+void adminMenu()   ///
 {
-    char c[200],t[200],q[200];
+    char c[20],t[20],q[20];
     printf("*=============================================================================*\n");
     printf("                    Welcome Administrator! \n\n\n");
     do
@@ -24,7 +24,7 @@ void adminMenu()
         }
         else if(c[0]=='e')//provjera za izlaz
         {
-            printf("GOOOOODBAYYY! :D\n");
+            printf("GOOOOODBAYYY! \n");
 
         }
         else if(c[0]=='h')
@@ -42,16 +42,16 @@ void adminMenu()
             if(rad_sa_account()==0)
                 signin();
             else
-                delete_account();
+               delete_accountFILIP();
             c[0]=ponovo_meni(t[0]);
         }
         gets(q);
     }
     while(c[0]!='e');
-    printf("Exit\n");
+    printf("                                Exit\n");
     printf("*=============================================================================*\n");
 }
-char ponovo_meni(char c)
+char ponovo_meni(char c)   ///funkcija preko koje se ponovo vraca u meni ili izlazi iz programa
 {
     char t[111],s,q[111];
     int f=0;
@@ -70,24 +70,25 @@ char ponovo_meni(char c)
         s='a';
     else if(t[0]=='n')
         s='e';
+        system("cls");
     return s;
 }
-int provera_slova2(char s)
+int provera_slova2(char s)  ///funkcija za provjeru slova iz admin_meni
 {
     if( s!='c'&& s!='v' && s!='h' && s!='e')
         return 0;
     return 1;
 }
-int provera_slova22(char s)
+int provera_slova22(char s)  ///funkcija za provjeru slova iz ponovo_meni
 {
     if( s=='y' ||  s=='n' )
         return 1;
     return 0;
 }
 
-int rad_sa_account()
+int rad_sa_account()  ///funkcija za upravljanje sa account-om
 {
-    char t[111],q[111];
+    char t[20],q[20];
     int f=0,k;
     printf("[d]- delete account \n");
     printf("[n]- create new account \n");
@@ -105,193 +106,57 @@ int rad_sa_account()
     else if(t[0]=='n')
         return 0;
 }
-int provera_slova123(char s)
+int provera_slova123(char s)  ///funkcija za provjera slova u rad_sa_account
 {
     if( s!='d' &&  s!='n' )
         return 0;
     return 1;
 }
-void delete_account()//moro a neko uraditi citavo kako spada
+
+int delete_accountFILIP()      ///funkicja za brisanje accounta
 {
-    FILE *fp;
-    char name[15+1], surname[15+1], pin[4+1],name1[15+1], surname1[15+1];
-    int type,k=0,f=0;
-    printf("Chose  account to delete :\n");
-    getchar();
-    do
-    {
-        printf("Name: ");
-        gets(name);
-    }
-    while(provjera_imena(name)!=1);
-    strcpy(name1,name);
-    do
-    {
-        printf("Surname: ");
-        gets(surname);
-    }
-    while(provjera_imena(surname)!=1);
-    strcpy(surname1,surname);
-    do
-    {
-        printf("PIN: ");
-        gets(pin);
-    }
-    while(provjera_pina(pin)!=1);
-    do
-    {
-        printf("Type: ");
-        scanf("%d",&type);
-    }
-    while(type<0 || type>1);
-    char tt[2]= {0}, s1[20],s2[20],s3[20],s4[20];
-    //FILE *fp=fopen("account1.txt","r+");
-    int i=1,pom=0,g,m,promjenljiva=0,prvi;
-
-    if((fp=fopen("account.txt","r"))==0)
-    {
-        printf("No folder!\n");
-        return;
-    }
-    else
-    {
-        FILE *fp=fopen("account.txt","r");
-        FILE *fp1=fopen("pomocna.txt","w");
-        while(!feof(fp))
-        {
-            char z[20],*s2,*s3,*s4;
-            fscanf(fp,"%s", &z);
-            //printf("%s ",z);
-            if((i%4)==1)
-            {
-                m=strlen(z);
-                prvi=((int)z[0]-48);
-                if((prvi-type)==0)promjenljiva++;
-                g=(prvi-type);
-                if(g!=0)
-                    pom++;
-                else pom=0;
-
-            }
-            else if((i%4)==2)
-            {
-                m=strlen(z);
-                s2=(char*)malloc(m);
-                g=strcmp(z,name);
-                s2=z;
-                if(g==0)
-                    pom++;
-                else pom=0;
-            }
-            else if((i%4)==3)
-            {
-                m=strlen(z);
-                s3=(char*)malloc(m);
-                g=strcmp(z,surname);
-                s3=z;
-                if(g==0)
-                    pom++;
-                else pom=0;
-            }
-            else if((i%4)==0)
-            {
-                m=strlen(z);
-                s4=(char*)malloc(m);
-                s4=z;
-                g=strcmp(z,pin);
-                if(g==0)
-                    pom++;
-                else pom=0;
-            }
-            if(pom==4)
-            {
-                f++;
-                char j[20];
-                printf("Osoba je obrisana sa liste accaunta !\n");
-                rewind(fp);
-                int br=1;
-                do
-                {
-                    fscanf(fp, "%s",j);
-                    if(strlen(j)==1 && ((int)j[0]-48)==type)
-                    {
-                        promjenljiva--;
-                        if(promjenljiva==0)
-                        {
-                            fscanf(fp, "%s",j);
-                            fscanf(fp, "%s",j);
-                            fscanf(fp, "%s",j);
-                        }
-                    }
-                    fputs(j,fp1);
-                    fputs(" ",fp1);
-                    if(br%4==0)
-                        fputs(" ",fp1);
-                    br++;
-                }
-                while(feof(fp)==0);
-            }
-
-            i++;
-        }
-        if(f==0)
-            printf("Osoba nije pronadjena \n");
-            fclose(fp);
-        fclose(fp1);
-    }
-if(f==1)
-     {
-    int ret,ret1,ret2;
-   char oldname[] = "pomocna.txt";
-   char oldname1[] = "pomocna.txt";
-   char newname[] = "accaunt.txt";
-   char newname1[] = "pomocna.txt";
-   char pom[]= "pom.txt";
-    ret1=rename(newname,pom);
-   ret = rename(oldname, newname1);
-   ret2=rename(pom,oldname1);
-   if(ret == 0) {
-      printf("File renamed successfully");
-   } else {
-      printf("Error: unable to rename the file");
-   }
-     }
-}
-
-
-int delete_accountFILIP()      /// radi, ali nisam bas zadovoljan
-{
+    int br=0;
     FILE *fp=fopen("account.txt","r+");
     fseek(fp,0,SEEK_SET);
     ACCOUNT tmp, tmp1;
-    printf("Enter name: ");
-    gets(tmp1.name);
-    printf("Enter surname: ");
-    gets(tmp1.surname);
-
-    while((fscanf(fp,"%d %s %s %s",&tmp.type,tmp.name,tmp.surname,tmp.pin))==4)
+ printf("Chose  account to delete :\n");
+    getchar();
+    do                          //provjera da li je dobro tneseno ime
+    {
+        printf("Name: ");
+        gets(tmp1.name);
+    }
+    while(provjera_imena(tmp1.name)!=1);
+    do                                  //provjera da li je dobro uneseno prezime
+    {
+        printf("Surname: ");
+        gets(tmp1.surname);
+    }
+    while(provjera_imena(tmp1.surname)!=1);
+    while((fscanf(fp,"%d %s %s %s",&tmp.type,tmp.name,tmp.surname,tmp.pin))==4) //trazenje osobe u datoteci account
     {
 
-        if(strcmp(tmp.name,tmp1.name)==0 && strcmp(tmp.surname,tmp1.surname)==0 )
+        if(strcmp(tmp.name,tmp1.name)==0 && strcmp(tmp.surname,tmp1.surname)==0 ) //pronalazenje osobe
         {
+            br++;
             ACCOUNT tmp2;
             int d=strlen(tmp.name);
             d+=strlen(tmp.surname);
-            d+=strlen(tmp.pin); // ili d+=4;
+            d+=strlen(tmp.pin);
             d+=4;                                  // 1_filip_stojakovic_1234  d=23
-
             fseek(fp,-d,SEEK_CUR);
             fflush(stdin);
             int i;
             for(i=0; i<d; i++)
                 fprintf(fp," ");
-
+            printf(" %s %s account successfully deleted !\n",tmp1.name,tmp1.surname);
             fclose(fp);
             return 1;
 
         }
     }
-
+if(br==0)                           //provjera da li postoji account
+    printf("Unsuccessfully to find account !\n");
 //    fflush(stdin);
 //    fseek(fp,0,SEEK_SET);
 //    while((fscanf(fp,"%d %s %s %s",&tmp.type,tmp.name,tmp.surname,tmp.pin))==4)

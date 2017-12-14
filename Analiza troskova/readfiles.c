@@ -128,8 +128,9 @@ int detectFormat(char *d_name)
     else
     {
         char tmp[15];
+        int i;
         fseek(fp,0,SEEK_SET);
-        for(int i=0;i<7; i++)
+        for(i=0;i<7; i++)
             fscanf(fp,"%s",tmp);
 
 

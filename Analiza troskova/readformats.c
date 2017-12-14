@@ -76,7 +76,8 @@ POD readFormat2(char* d_name) // cita sve podatke iz racuna formata 2
         fp=fopen(fullpath,"r");
     }
     char ignore[1024];
-    for(int i=0; i<n; i++)
+    int i,g,l;
+    for(l=0; l<n; l++)
         fgets(ignore,sizeof(ignore),fp);    // preskace red
 
     fscanf(fp,"%*s %s %s",pod.name,pod.surname);
@@ -88,13 +89,12 @@ POD readFormat2(char* d_name) // cita sve podatke iz racuna formata 2
     }
     else
         n=4;
-
-    for(int i=0;i<n;i++)
+    for(g=0;g<n;g++)
         fgets(ignore,sizeof(ignore),fp);
     int c=10;
     pod.art=(ARTIKL*)malloc(c*sizeof(ARTIKL));
     ARTIKL art;
-    int i=0;
+    i=0;
     while((fscanf(fp,"%s %s - %d - %d - %d",art.name,art.barcode,&art.kol,&art.cijena,&art.total))==5)
     {
         strcpy(pod.art[i].name,art.name);
@@ -112,7 +112,7 @@ POD readFormat2(char* d_name) // cita sve podatke iz racuna formata 2
 
     fscanf(fp,"%d",&pod.total);
     n=3;
-    for(int i=0;i<n;i++)
+    for(i=0;i<n;i++)
          fgets(ignore,sizeof(ignore),fp);
     fscanf(fp,"%*s %hhu/%hhu/%u",&pod.dan,&pod.mj,&pod.god);
 

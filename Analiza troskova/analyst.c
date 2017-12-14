@@ -20,7 +20,7 @@ void analystMenu()
     }
     else if(c[0]=='e')//provjera za izlaz
     {
-        printf("GOOOOODBAYYY! :D\n");
+        printf("GOOOOODBAYYY! \n");
 
     }
     else if(c[0]=='h')
@@ -28,19 +28,24 @@ void analystMenu()
         printf("help\n\n\n");
         c[0]=ponovo_meni(t[0]);
     }
-    else if(c=='v')
+    else if(c=='r')
     {
-        printf("valuta\n\n\n");
+        printf("review customer data \n\n\n");
         c[0]=ponovo_meni1(t[0]);
     }
-    else if(c[0]=='c')
+    else if(c[0]=='p')
     {
-        printf("acccoutn men\n\n\n");
+        printf("review product data\n\n\n");
         c[0]=ponovo_meni1(t[0]);
+    }
+    else if(c[0]=='w')
+    {
+        printf("review of sale data\n\n\n");
+        c[0]=ponovo_meni(t[0]);
     }
     getchar();
      }while(c[0]!='e');
-      printf("Exit\n");
+      printf("                              Exit\n");
      printf("*=============================================================================*\n");
 }
 char ponovo_meni1(char c)
@@ -62,6 +67,7 @@ char ponovo_meni1(char c)
             s='a';
     else if(t[0]=='n')
         s='e';
+        system("cls");
         return s;
 }
 int provera_slova1(char s)
