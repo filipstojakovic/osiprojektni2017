@@ -6,10 +6,10 @@
 #include <string.h>
 #include "admin.h"
 #include "readfiles.h"
-int provera_slova1(char );  // za Analyst menu
-int provera_slova11(char );
 void analystMenu();
-//char ponovo_meni1(char );
-
+int provera_slova_analyst(char );  // za Analyst menu
+int provera_slovaYN_analyst(char ); // provjera yes || no za Analyst menu
+char ponovo_meni_analyst();
+void helpMenu_analyst(); // kratak opis funkcija u Analyst meniju
 
 #endif // ANALITCOMMANDS_H

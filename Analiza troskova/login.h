@@ -12,6 +12,6 @@ void pocetno_zaglavlje();
 int provjera_imena(char *);
 int provjera_pina(char *);
 int checkFile1();
-
+int checkLogin(int); // funkcija koja provjerava ispravnost login attempta
 
 #endif // LOGIN_H

@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "login.h"
 #include "strukture.h"
+
 void adminMenu()
 {
     char c,ch;
@@ -15,13 +16,15 @@ void adminMenu()
         printf("[c] - account managment\n");
         printf("[v] - currency settings\n");
         printf("[h] - help menu\n");
+        printf("=======================\n");
+        printf("[l] - logout\n");
         printf("[e] - exit\n");
         printf("Option: ");
         scanf("%c",&c);
         scanf("%c",&ch);
         if(ch!='\n')
         {
-            printf("pogresna opcija!\n");
+            printf("Wrong option!\n");
             continue;
         }
 
@@ -36,7 +39,8 @@ void adminMenu()
         }
         else if(c=='h')
         {
-            printf("help\n\n\n");
+
+            helpMenu();
             c=ponovo_meni();
         }
         else if(c=='v')
@@ -54,19 +58,27 @@ void adminMenu()
         }
         //gets(q);
     }
-    while(c!='e');
-    printf("                                Exit\n");
-    printf("*=============================================================================*\n");
+    while(c!='e' && c!='l');
+    if(c=='e')
+    {
+        printf("                                Exit\n");
+        printf("*=============================================================================*\n");
+    }
+    if(c=='l') // vraca u main ako je odabrana opcija Logout
+    {
+        printf("Logout successful!\n");
+        main();/// Ako neko ima bolju ideju kako doci do logina ponovo... Ovo je jako lose, al' nisam imao druge ideje
+    }
 }
 
 
-char ponovo_meni( )   ///funkcija preko koje se ponovo vraca u meni ili izlazi iz programa
+char ponovo_meni()   //funkcija preko koje se ponovo vraca u meni ili izlazi iz programa
 {
     char c,ch,s;
     do
     {
         fflush(stdin);
-        printf("Do you want to go back to manu ? \n");
+        printf("Do you want to go back to menu ? \n");
         printf("[y] - yes\n");
         printf("[n] - no\n");
         printf("Option: ");
@@ -74,7 +86,7 @@ char ponovo_meni( )   ///funkcija preko koje se ponovo vraca u meni ili izlazi i
         scanf("%c",&ch);
         if(ch!='\n' || provera_slovaYN(c)!=1)
         {
-            printf("Pogresna opcijaaa!\n");
+            printf("Wrong option!\n");
             continue;
         }
 
@@ -89,13 +101,13 @@ char ponovo_meni( )   ///funkcija preko koje se ponovo vraca u meni ili izlazi i
 }
 
 
-int provera_slova(char s)  ///funkcija za provjeru slova iz admin_meni
+int provera_slova(char s)  //funkcija za provjeru slova iz admin_meni
 {
-    if( s!='c'&& s!='v' && s!='h' && s!='e')
+    if( s!='c'&& s!='v' && s!='h' && s!='e' && s!='l')
         return 0;
     return 1;
 }
-int provera_slovaYN( char s)  ///funkcija za provjeru slova iz ponovo_meni
+int provera_slovaYN( char s)  //funkcija za provjeru slova iz ponovo_meni
 {
     if( s=='y' ||  s=='n' )
         return 1;
@@ -109,11 +121,11 @@ int provjera_slovaDC(char c)
         return 0;
 }
 
-int rad_sa_account()  ///funkcija za upravljanje sa account-om
+int rad_sa_account()  //funkcija za upravljanje sa account-om
 {
 //    char t[20],q[20];
     char c,ch;
-    int f=0,k;
+    //int f=0,k;
     do
     {
         fflush(stdin);
@@ -124,7 +136,7 @@ int rad_sa_account()  ///funkcija za upravljanje sa account-om
         scanf("%c",&ch);
         if(ch!='\n' || provjera_slovaDC(c)==0 )
         {
-            printf("Pogresna opcijaaaaa!\n");
+            printf("Wrong option!\n");
             continue;
         }
 
@@ -136,7 +148,7 @@ int rad_sa_account()  ///funkcija za upravljanje sa account-om
         return 0;
 }
 
-int delete_account()      ///funkicja za brisanje accounta
+int delete_account()      //funkicja za brisanje accounta
 {
     int br=0;
     FILE *fp=fopen("account.txt","r+");
@@ -162,7 +174,7 @@ int delete_account()      ///funkicja za brisanje accounta
         if(strcmp(tmp.name,tmp1.name)==0 && strcmp(tmp.surname,tmp1.surname)==0 ) //pronalazenje osobe
         {
             br++;
-            ACCOUNT tmp2;
+            //ACCOUNT tmp2;
             int d=strlen(tmp.name);
             d+=strlen(tmp.surname);
             d+=strlen(tmp.pin);
@@ -186,6 +198,15 @@ int delete_account()      ///funkicja za brisanje accounta
 //        printf("%d %s %s %s\n",tmp.type,tmp.name,tmp.surname,tmp.pin);
     fclose(fp);
     return 0;
+}
+
+void helpMenu() // help menu za adminMenu
+{
+    system("cls");
+    printf("Accout managment:\n");
+    printf("Options to create or delete existing account. \nCreating account for administrator or analyst.\n\n\n");
+    printf("Currency settings:\n");
+    printf("Options to change used currency for reviewing data done by analyst.\n\n\n");
 }
 
 

@@ -14,5 +14,6 @@ void adminMenu();
 char ponovo_meni();
 int rad_sa_account();
 int delete_account();
+void helpMenu(); // kratak opis funkcija u administratorskom meniju
 
 #endif // ADMIN_H

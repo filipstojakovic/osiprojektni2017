@@ -1,5 +1,7 @@
 #include "login.h"
 #include "strukture.h"
+
+
 int checkFile()    // provjeri da li postoji datoteka account.txt
 {
     FILE *fp;
@@ -78,6 +80,7 @@ int login(int *flag)       // return 1 uspjesan login else 0
     while(provjera_pina(pin)!=1);
     return checkAccount(name1,surname1,pin,flag);
 }
+
 int provjera_pina(char *rec)
 {
     int i,pom;
@@ -97,6 +100,7 @@ int provjera_pina(char *rec)
     }
     return 1;
 }
+
 int provjera_imena(char *rec)
 {
     int i,pom;
@@ -116,9 +120,28 @@ int provjera_imena(char *rec)
     }
     return 1;
 }
+
+int checkLogin(int flag) // funkcija koja provjerava ispravnost logina i vraca flag administratora ili analiticara
+{
+    int i=3;
+    while(!login(&flag) && i>0)
+    {
+        printf("*=============================================================================*\n");
+        printf("False log in!\n");
+        i--;
+        if(i==0)
+        {
+            printf("Sorry no more attempts !\n");
+            return 0;
+        }
+        printf("Attempts left : %d\n",i);
+    }
+    return flag;
+}
+
 void pocetno_zaglavlje()
 {
     printf("*=============================================================================*\n");
-        printf("                                  -LOG IN-                                     \n");
+    printf("                                  -LOG IN-                                     \n");
 
 }

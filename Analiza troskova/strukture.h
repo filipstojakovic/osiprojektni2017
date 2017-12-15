@@ -31,4 +31,5 @@ typedef struct podaci
     float PDV;
     float sum;  // with PDV
 }POD;
+
 #endif // STRUKTURAACCOUNT_H_INCLUDED
