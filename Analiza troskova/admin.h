@@ -6,11 +6,12 @@
 #include <string.h>
 #include "signin.h"
 #include "login.h"
+#include "strukture.h"
 
 int provera_slova(char );  // za admin menu
 int provera_slovaYN(char ); // yes || no
 int provjera_slovaDC(char ); // 'd' or 'c'
-void adminMenu();
+void adminMenu(NODE*);
 char ponovo_meni();
 int rad_sa_account();
 int delete_account();

@@ -4,7 +4,7 @@
 #include "login.h"
 #include "strukture.h"
 
-void adminMenu()
+void adminMenu(NODE *head)
 {
     char c,ch;
     printf("*=============================================================================*\n");
@@ -81,6 +81,7 @@ char ponovo_meni()   //funkcija preko koje se ponovo vraca u meni ili izlazi iz 
         printf("Do you want to go back to menu ? \n");
         printf("[y] - yes\n");
         printf("[n] - no\n");
+        fflush(stdin);
         printf("Option: ");
         scanf("%c",&c);
         scanf("%c",&ch);

@@ -1,8 +1,7 @@
 #include "analyst.h"
 
-void analystMenu()
+void analystMenu(NODE *head)
 {
-//    char c[200],t[200],q[200];
     char c,ch;
     printf("*=============================================================================*\n");
     printf("                        Welcome Analyst! \n\n\n");
@@ -79,6 +78,7 @@ char ponovo_meni_analyst()
         printf("Do you want to go back to menu ? \n");
         printf("[y] - yes\n");
         printf("[n] - no\n");
+        fflush(stdin);
         printf("Option: ");
         scanf("%c",&c);
         scanf("%c",&ch);

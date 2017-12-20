@@ -92,10 +92,10 @@ FILE* findFile(char *d_name)
                     //   printf("%d\n",ftell(fp));
                 }
                 else
-                   {
-                       printf("NOT openedddd\n");
-                       return 0;
-                   }
+                {
+                    printf("NOT openedddd\n");
+                    return 0;
+                }
 
                 return fp;
             }
@@ -113,7 +113,7 @@ int detectFormat(char *d_name)
         return 5;
 
     fp=findFile(d_name);
-   // fp=fopen(d_name,"r+");
+    // fp=fopen(d_name,"r+");
     if(fp==0)
         return 0;
 
@@ -152,7 +152,7 @@ int detectFormat(char *d_name)
 }
 
 
-NODE *fillHead()
+NODE* fillHead()    /// bilo bi dobro od ove funkcije napraviti dve manje (za bolju preglednost)
 {
     NODE *head=0;
     FILE *fp;
@@ -168,7 +168,7 @@ NODE *fillHead()
         while((dp=readdir(dir)) != NULL)
         {
             if(!strcmp(dp->d_name,".") || (!strcmp(dp->d_name,"..")))
-               continue;
+                continue;
             char fullpath[50]="./racuni/";
             strcat(fullpath,dp->d_name);
             int format=detectFormat(dp->d_name);
@@ -181,6 +181,7 @@ NODE *fillHead()
             else if(format==2)
                 tmp=readFormat2(fullpath);
 
+
             novi->pod=tmp;
             if(head==0)
                 head=novi;
@@ -188,16 +189,25 @@ NODE *fillHead()
             else
             {
                 NODE *p;
-                for(p=head; p->next; p=p->next)
+                int flag=1;
+                for(p=head; p; p=p->next)
                 {
-                    if(strcmp(p->pod.name,tmp.name)==0 && strcmp(p->pod.surname,tmp.surname)==0)
+                    if(strcmp(p->pod.name,tmp.name)==0 || strcmp(p->pod.surname,tmp.surname)==0)
                     {
+
+                        p->pod.art=(ARTIKL*)realloc(p->pod.art,(p->pod.n+tmp.n)*sizeof(ARTIKL));
+                        for(int i=p->pod.n,j=0; i<tmp.n+p->pod.n && j<tmp.n ; i++,j++)
+                            p->pod.art[i]=tmp.art[j];
+
+                        p->pod.n+=tmp.n;
+                        flag=0;
+                        break;
                         // postoji vec kupac
                         // treba mu dodati artikle
                         // break;
                     }
                 }
-                if(p->next==0)
+                if(p->next==0 && flag)
                 {
                     novi->pod=tmp;
                     p->next=novi;

@@ -28,29 +28,31 @@ int main()
         tmp=tmp->next;
     }
 
-    system("pause");
 
     flag=checkLogin(&flag); // funkcija koja provjerava da li je login ispravan, samo da main izgleda cisce
     printf("You are logged in successfully ");
-    if(flag==0)
+    if(flag==1)
     {
         printf("as analyst !\n");
-        Sleep(3000);// pauzira izvrsavanje programa na 3 sekunde da se procita poruka iznad
+        Sleep(1000);// pauzira izvrsavanje programa na 3 sekunde da se procita poruka iznad
         system("cls");
         /*lista=fileList();
         if(i==0)
             printf("Can not open file in directory! \n");
         else
             printf("CAN OPEN FILE IN DIRECTORY!\n");*/
-        analystMenu();
+        analystMenu(head);
     }
     else
     {
         printf("as administrator !\n");
-        Sleep(3000);// pauzira izvrsavanje programa na 3 sekunde da se procita poruka iznad
+        Sleep(1000);// pauzira izvrsavanje programa na 3 sekunde da se procita poruka iznad
         system("cls");
-        adminMenu();
+        adminMenu(head);
     }
     getchar();
+
+    /// free list
+
     return 0;
 }

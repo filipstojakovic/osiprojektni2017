@@ -6,7 +6,9 @@
 #include <string.h>
 #include "admin.h"
 #include "readfiles.h"
-void analystMenu();
+#include "strukture.h"
+
+void analystMenu(NODE* );
 int provera_slova_analyst(char );  // za Analyst menu
 int provera_slovaYN_analyst(char ); // provjera yes || no za Analyst menu
 char ponovo_meni_analyst();
