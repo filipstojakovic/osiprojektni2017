@@ -7,7 +7,7 @@
 #include "strukture.h"
 #include "windows.h"
 // ovakav komentar je za opis funkcije ili neke komande
-/// ovakav komentar je ako treba neku izmjenu napraviti
+sebi/// ovakav komentar je ako treba neku izmjenu napraviti
 
 int flag = 0; // prebacio flag da bude globalna prom
 
