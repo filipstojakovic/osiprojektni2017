@@ -7,13 +7,28 @@
 #include "strukture.h"
 #include "windows.h"
 // ovakav komentar je za opis funkcije ili neke komande
-sebi/// ovakav komentar je ako treba neku izmjenu napraviti
+/// ovakav komentar je ako treba neku izmjenu napraviti
 
 int flag = 0; // prebacio flag da bude globalna prom
 
 int main()
 {
     //int flag=0,i=3,lista;
+    NODE *head=0;
+
+    head=fillHead();
+    NODE *tmp=head;
+    while(tmp)
+    {
+        printf("NAME: %s %s\n",tmp->pod.name,tmp->pod.surname);
+        printf(" Artikli:\n");
+        for(int i=0;i<tmp->pod.n;i++)
+            printf("\t%s %s - %d - %d - %d\n",tmp->pod.art[i].name,tmp->pod.art[i].barcode,tmp->pod.art[i].kol,tmp->pod.art[i].cijena,tmp->pod.art[i].total);
+        printf(" UKUPNO: %d + %.2f = %.2f\n",tmp->pod.total,tmp->pod.PDV,tmp->pod.sum);
+        tmp=tmp->next;
+    }
+
+    system("pause");
 
     flag=checkLogin(&flag); // funkcija koja provjerava da li je login ispravan, samo da main izgleda cisce
     printf("You are logged in successfully ");

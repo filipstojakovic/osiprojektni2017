@@ -10,6 +10,7 @@ typedef struct account
     char pin[4+1];
 
 }ACCOUNT;
+
 typedef struct artikl
 {
     char name[15+1];
@@ -31,5 +32,12 @@ typedef struct podaci
     float PDV;
     float sum;  // with PDV
 }POD;
+
+typedef struct node
+{
+    POD pod;
+    struct node *next;
+
+}NODE;
 
 #endif // STRUKTURAACCOUNT_H_INCLUDED

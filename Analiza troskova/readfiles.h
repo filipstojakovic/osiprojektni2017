@@ -5,6 +5,7 @@
 #include <dirent.h>
 #include <unistd.h>
 #include <string.h>
+#include "strukture.h"
 
 //#include <errno.h> za sad ne treba
 
@@ -14,5 +15,8 @@ FILE* findFile(char *);         // pronalazi fajl otvara ga i vraca pokazivac na
 
 void renameFile(char *findname);        // pronadji fajl (findname) i promjeni naziv
 int detectFormat(char *);                   // format racuna....return 1, 2 ,3 ,4 ,5
+
+NODE *fillHead();
+
 
 #endif // READFILES_H
