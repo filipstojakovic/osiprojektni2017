@@ -15,7 +15,7 @@ FILE* findFile(char *);         // pronalazi fajl otvara ga i vraca pokazivac na
 
 void renameFile(char *findname);        // pronadji fajl (findname) i promjeni naziv
 int detectFormat(char *);                   // format racuna....return 1, 2 ,3 ,4 ,5
-
+ART_DATE podToData(POD);
 NODE *fillHead();
 
 

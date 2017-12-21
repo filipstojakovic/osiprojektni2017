@@ -151,6 +151,18 @@ int detectFormat(char *d_name)
     return 0;
 }
 
+ART_DATE podToData(POD data)
+{
+    ART_DATE artWithDate;
+    artWithDate.art=data.art;
+    artWithDate.mj=data.mj;
+    artWithDate.god=data.god;
+    artWithDate.n_art=data.n;
+    artWithDate.PDV=data.PDV;
+    artWithDate.total=data.total;
+    artWithDate.sum=data.sum;
+    return artWithDate;
+}
 
 NODE* fillHead()    /// bilo bi dobro od ove funkcije napraviti dve manje (za bolju preglednost)
 {
@@ -175,31 +187,34 @@ NODE* fillHead()    /// bilo bi dobro od ove funkcije napraviti dve manje (za bo
 
             NODE* novi=(NODE*)calloc(1,sizeof(NODE));
             POD tmp;
+            ART_DATE temp_art_date;
 
             if(format==1)
                 tmp=readFormat1(fullpath);
             else if(format==2)
                 tmp=readFormat2(fullpath);
 
+            strcpy(novi->name,tmp.name);
+            strcpy(novi->surname,tmp.surname);
+            temp_art_date=podToData(tmp);
+            novi->artdate=&temp_art_date;
 
-            novi->pod=tmp;
             if(head==0)
                 head=novi;
-
             else
             {
                 NODE *p;
                 int flag=1;
-                for(p=head; p; p=p->next)
+                for(p=head; p->next; p=p->next)
                 {
-                    if(strcmp(p->pod.name,tmp.name)==0 || strcmp(p->pod.surname,tmp.surname)==0)
+                    if(strcmp(p->name,tmp.name)==0 && strcmp(p->surname,tmp.surname)==0)
                     {
 
-                        p->pod.art=(ARTIKL*)realloc(p->pod.art,(p->pod.n+tmp.n)*sizeof(ARTIKL));
-                        for(int i=p->pod.n,j=0; i<tmp.n+p->pod.n && j<tmp.n ; i++,j++)
-                            p->pod.art[i]=tmp.art[j];
+                        p->artdate->art=(ARTIKL*)realloc(p->artdate->art,(p->artdate->n_art+tmp.n)*sizeof(ARTIKL));
+                        for(int i=p->artdate->n_art,j=0; i<tmp.n+p->artdate->n_art && j<tmp.n ; i++,j++)
+                            p->artdate->art[i]=tmp.art[j];
 
-                        p->pod.n+=tmp.n;
+                        p->artdate->n_art+=tmp.n;
                         flag=0;
                         break;
                         // postoji vec kupac
@@ -209,9 +224,9 @@ NODE* fillHead()    /// bilo bi dobro od ove funkcije napraviti dve manje (za bo
                 }
                 if(p->next==0 && flag)
                 {
-                    novi->pod=tmp;
                     p->next=novi;
                 }
+
             }
         }
     }
