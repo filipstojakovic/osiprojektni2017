@@ -164,7 +164,7 @@ ART_DATE podToData(POD data)
     return artWithDate;
 }
 
-NODE* fillHead()    /// bilo bi dobro od ove funkcije napraviti dve manje (za bolju preglednost)
+NODE* fillHead()
 {
     NODE *head=0;
     FILE *fp;
@@ -179,52 +179,58 @@ NODE* fillHead()    /// bilo bi dobro od ove funkcije napraviti dve manje (za bo
     {
         while((dp=readdir(dir)) != NULL)
         {
-            if(!strcmp(dp->d_name,".") || (!strcmp(dp->d_name,"..")))
+            if(!strcmp(dp->d_name,".") || (!strcmp(dp->d_name,"..")))       // preskace '.' i '..' folder
                 continue;
             char fullpath[50]="./racuni/";
             strcat(fullpath,dp->d_name);
             int format=detectFormat(dp->d_name);
 
-            NODE* novi=(NODE*)calloc(1,sizeof(NODE));
-            POD tmp;
-            ART_DATE temp_art_date;
+            POD tmp_pod;
 
             if(format==1)
-                tmp=readFormat1(fullpath);
+                tmp_pod=readFormat1(fullpath);
             else if(format==2)
-                tmp=readFormat2(fullpath);
+                tmp_pod=readFormat2(fullpath);
 
-            strcpy(novi->name,tmp.name);
-            strcpy(novi->surname,tmp.surname);
-            temp_art_date=podToData(tmp);
-            novi->artdate=&temp_art_date;
 
             if(head==0)
+            {
+                NODE* novi=(NODE*)calloc(1,sizeof(NODE));
+                fillNode(&novi,tmp_pod);
                 head=novi;
+            }
             else
             {
                 NODE *p;
-                int flag=1;
-                for(p=head; p->next; p=p->next)
+                NODE *pp;
+
+                for(p=head; p; p=p->next)
                 {
-                    if(strcmp(p->name,tmp.name)==0 && strcmp(p->surname,tmp.surname)==0)
+                    pp=p;       // pp pokazuje na cvor prije p nakon zavrsetka petlje
+                    if(strcmp(p->name,tmp_pod.name)==0 && strcmp(p->surname,tmp_pod.surname)==0)   // ako postoji kupac
                     {
 
-                        p->artdate->art=(ARTIKL*)realloc(p->artdate->art,(p->artdate->n_art+tmp.n)*sizeof(ARTIKL));
-                        for(int i=p->artdate->n_art,j=0; i<tmp.n+p->artdate->n_art && j<tmp.n ; i++,j++)
-                            p->artdate->art[i]=tmp.art[j];
+                        p->n_racuna+=1;
+                        p->artdate=(ART_DATE*)realloc(p->artdate,p->n_racuna*sizeof(ART_DATE));
 
-                        p->artdate->n_art+=tmp.n;
-                        flag=0;
+                        int m=p->n_racuna-1;        // m je pozicija u nizu tj zadnje mjesto
+
+                        p->artdate[m].mj=tmp_pod.mj;
+                        p->artdate[m].god=tmp_pod.god;
+                        p->artdate[m].n_art=tmp_pod.n;
+                        p->artdate[m].total=tmp_pod.total;
+                        p->artdate[m].PDV=tmp_pod.PDV;
+                        p->artdate[m].sum=tmp_pod.sum;
+                        p->artdate[m].art=tmp_pod.art;
+
                         break;
-                        // postoji vec kupac
-                        // treba mu dodati artikle
-                        // break;
                     }
                 }
-                if(p->next==0 && flag)
+                if( pp->next==0)
                 {
-                    p->next=novi;
+                    NODE* novi=(NODE*)calloc(1,sizeof(NODE));
+                    fillNode(&novi,tmp_pod);
+                    pp->next=novi;
                 }
 
             }
@@ -232,6 +238,67 @@ NODE* fillHead()    /// bilo bi dobro od ove funkcije napraviti dve manje (za bo
     }
     return head;
 }
+
+//            ART_DATE temp_art_date;
+//
+//            NODE* novi=(NODE*)calloc(1,sizeof(NODE));
+//            strcpy(novi->name,tmp.name);
+//            strcpy(novi->surname,tmp.surname);
+//            temp_art_date=podToData(tmp);
+//            novi->artdate=&temp_art_date;
+//
+//            if(head==0)
+//                head=novi;
+//            else
+//            {
+//                NODE *p;
+//                int flag=1;
+//                for(p=head; p->next; p=p->next)
+//                {
+//                    if(strcmp(p->name,tmp.name)==0 && strcmp(p->surname,tmp.surname)==0)
+//                    {
+//
+//                        p->artdate->art=(ARTIKL*)realloc(p->artdate->art,(p->artdate->n_art+tmp.n)*sizeof(ARTIKL));
+//                        for(int i=p->artdate->n_art,j=0; i<tmp.n+p->artdate->n_art && j<tmp.n ; i++,j++)
+//                            p->artdate->art[i]=tmp.art[j];
+//
+//                        p->artdate->n_art+=tmp.n;
+//                        flag=0;
+//                        break;
+//                        // postoji vec kupac
+//                        // treba mu dodati artikle
+//                        // break;
+//                    }
+//                }
+//                if(p->next==0 && flag)
+//                {
+//                    p->next=novi;
+//                }
+
+
+
+
+
+void fillNode(NODE** novi, POD tmp)
+{
+    strcpy((*novi)->name,tmp.name);
+    strcpy((*novi)->surname,tmp.surname);
+    (*novi)->n_racuna=1;
+    (*novi)->artdate=(ART_DATE*)calloc(1,sizeof(ART_DATE));
+    (*novi)->artdate->mj=tmp.mj;
+    (*novi)->artdate->god=tmp.god;
+    (*novi)->artdate->n_art=tmp.n;
+    (*novi)->artdate->art=tmp.art;
+    (*novi)->artdate->total=tmp.total;
+    (*novi)->artdate->PDV=tmp.PDV;
+    (*novi)->artdate->sum=tmp.sum;
+
+}
+
+
+
+
+
 
 
 

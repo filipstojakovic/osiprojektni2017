@@ -17,6 +17,6 @@ void renameFile(char *findname);        // pronadji fajl (findname) i promjeni n
 int detectFormat(char *);                   // format racuna....return 1, 2 ,3 ,4 ,5
 ART_DATE podToData(POD);
 NODE *fillHead();
-
+void fillNode(NODE**, POD);
 
 #endif // READFILES_H
