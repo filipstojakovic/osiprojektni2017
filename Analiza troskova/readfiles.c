@@ -151,19 +151,6 @@ int detectFormat(char *d_name)
     return 0;
 }
 
-ART_DATE podToData(POD data)
-{
-    ART_DATE artWithDate;
-    artWithDate.art=data.art;
-    artWithDate.mj=data.mj;
-    artWithDate.god=data.god;
-    artWithDate.n_art=data.n;
-    artWithDate.PDV=data.PDV;
-    artWithDate.total=data.total;
-    artWithDate.sum=data.sum;
-    return artWithDate;
-}
-
 NODE* fillHead()
 {
     NODE *head=0;
@@ -207,9 +194,11 @@ NODE* fillHead()
                 for(p=head; p; p=p->next)
                 {
                     pp=p;       // pp pokazuje na cvor prije p nakon zavrsetka petlje
+                    fflush(stdin);
                     if(strcmp(p->name,tmp_pod.name)==0 && strcmp(p->surname,tmp_pod.surname)==0)   // ako postoji kupac
                     {
 
+                        fflush(stdin);
                         p->n_racuna+=1;
                         p->artdate=(ART_DATE*)realloc(p->artdate,p->n_racuna*sizeof(ART_DATE));
 
@@ -226,7 +215,7 @@ NODE* fillHead()
                         break;
                     }
                 }
-                if( pp->next==0)
+                if( pp->next==0 && p==0)
                 {
                     NODE* novi=(NODE*)calloc(1,sizeof(NODE));
                     fillNode(&novi,tmp_pod);
@@ -238,46 +227,6 @@ NODE* fillHead()
     }
     return head;
 }
-
-//            ART_DATE temp_art_date;
-//
-//            NODE* novi=(NODE*)calloc(1,sizeof(NODE));
-//            strcpy(novi->name,tmp.name);
-//            strcpy(novi->surname,tmp.surname);
-//            temp_art_date=podToData(tmp);
-//            novi->artdate=&temp_art_date;
-//
-//            if(head==0)
-//                head=novi;
-//            else
-//            {
-//                NODE *p;
-//                int flag=1;
-//                for(p=head; p->next; p=p->next)
-//                {
-//                    if(strcmp(p->name,tmp.name)==0 && strcmp(p->surname,tmp.surname)==0)
-//                    {
-//
-//                        p->artdate->art=(ARTIKL*)realloc(p->artdate->art,(p->artdate->n_art+tmp.n)*sizeof(ARTIKL));
-//                        for(int i=p->artdate->n_art,j=0; i<tmp.n+p->artdate->n_art && j<tmp.n ; i++,j++)
-//                            p->artdate->art[i]=tmp.art[j];
-//
-//                        p->artdate->n_art+=tmp.n;
-//                        flag=0;
-//                        break;
-//                        // postoji vec kupac
-//                        // treba mu dodati artikle
-//                        // break;
-//                    }
-//                }
-//                if(p->next==0 && flag)
-//                {
-//                    p->next=novi;
-//                }
-
-
-
-
 
 void fillNode(NODE** novi, POD tmp)
 {

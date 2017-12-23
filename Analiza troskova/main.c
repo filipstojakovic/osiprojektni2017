@@ -15,7 +15,6 @@ int main()
 {
     NODE *head=0;
     head=fillHead();
-
     flag=checkLogin(&flag); // funkcija koja provjerava da li je login ispravan, samo da main izgleda cisce
     printf("You are logged in successfully ");
     if(flag==1)

@@ -94,14 +94,14 @@
 	<unistd.h>
 	<string.h>
 
-1513845830 source:c:\users\filip\documents\github\osiprojektni2017\analiza troskova\admin.c
+1514062494 source:c:\users\filip\documents\github\osiprojektni2017\analiza troskova\admin.c
 	"admin.h"
 	<string.h>
 	<stdio.h>
 	"login.h"
 	"strukture.h"
 
-1513845830 c:\users\filip\documents\github\osiprojektni2017\analiza troskova\admin.h
+1514062494 c:\users\filip\documents\github\osiprojektni2017\analiza troskova\admin.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -109,22 +109,22 @@
 	"login.h"
 	"strukture.h"
 
-1513845830 c:\users\filip\documents\github\osiprojektni2017\analiza troskova\signin.h
+1514062494 c:\users\filip\documents\github\osiprojektni2017\analiza troskova\signin.h
 	<stdio.h>
 	<string.h>
 
-1513855167 c:\users\filip\documents\github\osiprojektni2017\analiza troskova\login.h
+1514062494 c:\users\filip\documents\github\osiprojektni2017\analiza troskova\login.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1513845830 c:\users\filip\documents\github\osiprojektni2017\analiza troskova\strukture.h
+1514062494 c:\users\filip\documents\github\osiprojektni2017\analiza troskova\strukture.h
 	<stdlib.h>
 
-1513845830 source:c:\users\filip\documents\github\osiprojektni2017\analiza troskova\analyst.c
+1514063484 source:c:\users\filip\documents\github\osiprojektni2017\analiza troskova\analyst.c
 	"analyst.h"
 
-1513845830 c:\users\filip\documents\github\osiprojektni2017\analiza troskova\analyst.h
+1514062494 c:\users\filip\documents\github\osiprojektni2017\analiza troskova\analyst.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -132,18 +132,18 @@
 	"readfiles.h"
 	"strukture.h"
 
-1513845830 c:\users\filip\documents\github\osiprojektni2017\analiza troskova\readfiles.h
+1514062494 c:\users\filip\documents\github\osiprojektni2017\analiza troskova\readfiles.h
 	<stdio.h>
 	<dirent.h>
 	<unistd.h>
 	<string.h>
 	"strukture.h"
 
-1513845830 source:c:\users\filip\documents\github\osiprojektni2017\analiza troskova\login.c
+1514062494 source:c:\users\filip\documents\github\osiprojektni2017\analiza troskova\login.c
 	"login.h"
 	"strukture.h"
 
-1513856106 source:c:\users\filip\documents\github\osiprojektni2017\analiza troskova\main.c
+1514062757 source:c:\users\filip\documents\github\osiprojektni2017\analiza troskova\main.c
 	"login.h"
 	"admin.h"
 	"analyst.h"
@@ -153,22 +153,22 @@
 	"strukture.h"
 	"windows.h"
 
-1513845830 c:\users\filip\documents\github\osiprojektni2017\analiza troskova\readformats.h
+1514062494 c:\users\filip\documents\github\osiprojektni2017\analiza troskova\readformats.h
 	"strukture.h"
 	<stdio.h>
 	<dirent.h>
 	<unistd.h>
 	<string.h>
 
-1513856106 source:c:\users\filip\documents\github\osiprojektni2017\analiza troskova\readfiles.c
+1514063410 source:c:\users\filip\documents\github\osiprojektni2017\analiza troskova\readfiles.c
 	"readfiles.h"
 	"readformats.h"
 
-1513845830 source:c:\users\filip\documents\github\osiprojektni2017\analiza troskova\signin.c
+1514062494 source:c:\users\filip\documents\github\osiprojektni2017\analiza troskova\signin.c
 	"signin.h"
 	"strukture.h"
 
-1513856070 source:c:\users\filip\documents\github\osiprojektni2017\analiza troskova\readformats.c
+1514062494 source:c:\users\filip\documents\github\osiprojektni2017\analiza troskova\readformats.c
 	"readformats.h"
 	<stdio.h>
 	<string.h>

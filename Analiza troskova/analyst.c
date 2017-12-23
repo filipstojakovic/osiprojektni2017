@@ -191,9 +191,12 @@ void artiklsByDate(NODE* head,unsigned char mj)
 {
     if(head==0)
         return printf("Empty list - nema racuna\n");
+        int i=0;
     while(head)
     {
 
+        printf("i=%d\n",i);i++;
+        fflush(stdin);
         for(int j=0; j<head->n_racuna; j++)
         {
             fflush(stdin);
