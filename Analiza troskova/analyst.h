@@ -13,5 +13,9 @@ int provera_slova_analyst(char );  // za Analyst menu
 int provera_slovaYN_analyst(char ); // provjera yes || no za Analyst menu
 char ponovo_meni_analyst();
 void helpMenu_analyst(); // kratak opis funkcija u Analyst meniju
+void customerList(NODE *);
+void customerArtikls (NODE*,char*,char*);
+void artiklsByDate(NODE*,unsigned char);
+
 
 #endif // ANALITCOMMANDS_H

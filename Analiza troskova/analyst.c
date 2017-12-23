@@ -7,6 +7,7 @@ void analystMenu(NODE *head)
     printf("                        Welcome Analyst! \n\n\n");
     do
     {
+        NODE *tmp_head=head;    // za svaki slucaj da se ne koristi orginalna glava
         fflush(stdin);
         printf("*=============================================================================*\n");
         printf("[r] - review customer data\n");
@@ -19,6 +20,7 @@ void analystMenu(NODE *head)
         printf("Option: ");
         scanf("%c",&c);
         scanf("%c",&ch);
+        system("cls");
         if(ch!='\n' || provera_slova_analyst(c)!=1)    //provjerava da li je unesono slovo jedno od ponudjenih
         {
             printf("Unknown letter !\n");
@@ -34,7 +36,18 @@ void analystMenu(NODE *head)
         }
         else if(c=='r')
         {
-            printf("review customer data \n\n\n");
+
+            char name[15+1], surname[15+1];
+            customerList(tmp_head);
+            printf("Enter customer's\nName: ");
+            scanf("%s",name);
+            fflush(stdin);
+            printf("Surname: ");
+            fgets(surname, 15, stdin);       // fgets - da moze uzeti '\n' kao string tj ako nema prezimena
+            surname[strlen(surname)-1]=0;   // zato sto je '\n' poslednji karakter u stringu (brisemo ga)
+
+            customerArtikls(tmp_head,name,surname);
+            fflush(stdin);
             c=ponovo_meni_analyst();
         }
         else if(c=='p')
@@ -44,7 +57,16 @@ void analystMenu(NODE *head)
         }
         else if(c=='w')
         {
-            printf("review of sale data\n\n\n");
+            unsigned char mj;
+            do
+            {
+                printf("Enter specific month (1-12): ");
+                scanf("%hhu",&mj);
+
+            }
+            while(mj<1 || mj>12);
+
+            artiklsByDate(tmp_head,mj);
             c=ponovo_meni_analyst();
         }
         fflush(stdin);
@@ -88,7 +110,8 @@ char ponovo_meni_analyst()
             continue;
         }
 
-    }while(ch!='\n' || provera_slovaYN_analyst(c)!=1);
+    }
+    while(ch!='\n' || provera_slovaYN_analyst(c)!=1);
 
     if(c=='y')
         s='y';
@@ -115,3 +138,103 @@ void helpMenu_analyst() // help menu za analystMenu
     printf("Review Of Sale Data:\n");
     printf("This option reviews data for all sales made in a specific timeline \n\n\n");
 }
+
+
+void customerList(NODE *head)
+{
+    printf("Customore list:\n");
+    while(head)
+    {
+        printf("%s %s\n",head->name,head->surname);
+        head=head->next;
+    }
+    printf("\n");
+
+}
+
+void customerArtikls (NODE* head,char* name,char* surname)
+{
+    while(head)
+    {
+        if(strcmp(head->name,name)==0 && strcmp(head->surname,surname)==0)
+        {
+            system("cls");
+            printf("Kupac: %s %s\n\n",name,surname);
+
+
+            for(int j=0; j<head->n_racuna; j++)
+            {
+                printf("Datum: %hhu %u\n",head->artdate[j].mj,head->artdate[j].god);
+                printf("Proizvod        Barcode         Kol Cijena Ukupno\n");
+                printf("_______________ _______________ ___ ______ ______\n");
+                for(int i=0; i<head->artdate[j].n_art; i++)
+                    printf("%-15s %-15s %3d %6d %6d\n",head->artdate[j].art[i].name,head->artdate[j].art[i].barcode,
+                           head->artdate[j].art[i].kol,head->artdate[j].art[i].cijena,
+                           head->artdate[j].art[i].total);
+                printf("\n");
+            }
+            printf("\n");
+            break;
+        }
+        head=head->next;
+    }
+
+    if(head==0)
+    {
+        printf("No such name!\n");
+    }
+
+}
+
+
+void artiklsByDate(NODE* head,unsigned char mj)
+{
+    if(head==0)
+        return printf("Empty list - nema racuna\n");
+    while(head)
+    {
+
+        for(int j=0; j<head->n_racuna; j++)
+        {
+            fflush(stdin);
+            if(head->artdate[j].mj==mj)
+            {
+
+                printf("Kupac: %s %s\n",head->name,head->surname);
+                printf("Datum: %hhu %u\n",head->artdate[j].mj,head->artdate[j].god);
+                printf("Proizvod        Barcode         Kol Cijena Ukupno\n");
+                printf("_______________ _______________ ___ ______ ______\n");
+                for(int i=0; i<head->artdate[j].n_art; i++)
+                {
+                    printf("%-15s %-15s %3d %6d %6d\n",head->artdate[j].art[i].name,head->artdate[j].art[i].barcode,
+                           head->artdate[j].art[i].kol,head->artdate[j].art[i].cijena,
+                           head->artdate[j].art[i].total);
+                }
+                printf("\nTotal: %d\tPDV: %.2f\tSum:%.2f\n\n",head->artdate[j].total,head->artdate[j].PDV,head->artdate[j].sum);
+            }
+        }
+
+        fflush(stdin);
+        head=head->next;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
