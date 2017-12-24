@@ -16,6 +16,7 @@ void helpMenu_analyst(); // kratak opis funkcija u Analyst meniju
 void customerList(NODE *);
 void customerArtikls (NODE*,char*,char*);
 void artiklsByDate(NODE*,unsigned char);
+void productData(NODE* , char* );
 
 
 #endif // ANALITCOMMANDS_H

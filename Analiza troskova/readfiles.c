@@ -1,7 +1,7 @@
 #include "readfiles.h"
 #include "readformats.h"
 
-int fileList()
+int fileList()  // lista naziva svih racuna
 {
     DIR *dir;
     struct dirent *dp;
@@ -67,7 +67,7 @@ void renameFile(char *findname) // trenutno se ne koristi findname u funkciji
     closedir(dir);
 }
 
-FILE* findFile(char *d_name)
+FILE* findFile(char *d_name)    // pronalazi file i vraca pokazivac na otvoreni fajl
 {
     FILE *fp;
     DIR *dir;
@@ -85,12 +85,10 @@ FILE* findFile(char *d_name)
             {
                 char fullpath[50]="./racuni/";
                 strcat(fullpath,dp->d_name);
-                // printf("%s\n",fullpath);
+
                 if(fp=fopen(fullpath,"r+"))
-                {
                     fseek(fp,0,SEEK_END);
-                    //   printf("%d\n",ftell(fp));
-                }
+
                 else
                 {
                     printf("NOT openedddd\n");
@@ -104,7 +102,7 @@ FILE* findFile(char *d_name)
     return 0;
 }
 
-int detectFormat(char *d_name)
+int detectFormat(char *d_name)  // vraca format racuna
 {
     FILE *fp;
 
@@ -151,7 +149,7 @@ int detectFormat(char *d_name)
     return 0;
 }
 
-NODE* fillHead()
+NODE* fillHead()    // formira se lista kupaca i njihovih racuna po datumu
 {
     NODE *head=0;
     FILE *fp;
@@ -228,7 +226,7 @@ NODE* fillHead()
     return head;
 }
 
-void fillNode(NODE** novi, POD tmp)
+void fillNode(NODE** novi, POD tmp) // popunjava cvor (NODE) sa podacima iz POD
 {
     strcpy((*novi)->name,tmp.name);
     strcpy((*novi)->surname,tmp.surname);

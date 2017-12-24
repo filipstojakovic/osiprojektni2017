@@ -41,49 +41,69 @@
 1512726623 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\signin.c
 	"signin.h"
 
-1512669629 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\admin.c
+1513845830 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\admin.c
 	"admin.h"
+	<string.h>
+	<stdio.h>
+	"login.h"
+	"strukture.h"
 
-1512670416 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\admin.h
+1514136524 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\admin.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	"signin.h"
+	"login.h"
+	"strukture.h"
 
-1512669698 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\analyst.c
+1514132897 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\analyst.c
 	"analyst.h"
 
-1512669698 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\analyst.h
+1514136527 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\analyst.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	"admin.h"
+	"readfiles.h"
+	"strukture.h"
 
-1512668890 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\login.c
+1513845830 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\login.c
 	"login.h"
+	"strukture.h"
 
-1512668890 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\login.h
+1514136528 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\login.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1512668890 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\main.c
+1514132897 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\main.c
 	"login.h"
 	"admin.h"
 	"analyst.h"
 	"signin.h"
+	"readfiles.h"
+	"readformats.h"
+	"strukture.h"
+	"windows.h"
 
-1512666421 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\signin.h
+1514136532 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\signin.h
 	<stdio.h>
 	<string.h>
 
-1512666421 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\readfiles.c
+1514132897 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\readfiles.c
 	"readfiles.h"
+	"readformats.h"
 
-1512666421 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\readfiles.h
+1514136529 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\readfiles.h
 	<stdio.h>
 	<dirent.h>
+	<unistd.h>
+	<string.h>
+	"strukture.h"
 
-1512666421 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\signin.c
+1513845830 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\signin.c
 	"signin.h"
+	"strukture.h"
 
 1512730453 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\readfiles.c
 	"readfiles.h"
@@ -251,4 +271,19 @@
 1513889270 source:c:\users\acobo\desktop\projektni\readfiles.c
 	"readfiles.h"
 	"readformats.h"
+
+1514136533 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\strukture.h
+	<stdlib.h>
+
+1514136531 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\readformats.h
+	"strukture.h"
+	<stdio.h>
+	<dirent.h>
+	<unistd.h>
+	<string.h>
+
+1513856070 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\readformats.c
+	"readformats.h"
+	<stdio.h>
+	<string.h>
 

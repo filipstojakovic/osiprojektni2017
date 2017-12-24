@@ -4,7 +4,7 @@
 #include "login.h"
 #include "strukture.h"
 
-void adminMenu(NODE *head)
+void adminMenu()
 {
     char c,ch;
     printf("*=============================================================================*\n");
@@ -22,6 +22,7 @@ void adminMenu(NODE *head)
         printf("Option: ");
         scanf("%c",&c);
         scanf("%c",&ch);
+        system("cls");
         if(ch!='\n')
         {
             printf("Wrong option!\n");
@@ -124,9 +125,8 @@ int provjera_slovaDC(char c)
 
 int rad_sa_account()  //funkcija za upravljanje sa account-om
 {
-//    char t[20],q[20];
+//
     char c,ch;
-    //int f=0,k;
     do
     {
         fflush(stdin);

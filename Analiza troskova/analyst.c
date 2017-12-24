@@ -1,5 +1,6 @@
 #include "analyst.h"
 
+
 void analystMenu(NODE *head)
 {
     char c,ch;
@@ -44,7 +45,7 @@ void analystMenu(NODE *head)
             fflush(stdin);
             printf("Surname: ");
             fgets(surname, 15, stdin);       // fgets - da moze uzeti '\n' kao string tj ako nema prezimena
-            surname[strlen(surname)-1]=0;   // zato sto je '\n' poslednji karakter u stringu (brisemo ga)
+            surname[strlen(surname)-1]=0;   //u fgets - zato sto je '\n' poslednji karakter u stringu (brisemo ga)
 
             customerArtikls(tmp_head,name,surname);
             fflush(stdin);
@@ -52,7 +53,10 @@ void analystMenu(NODE *head)
         }
         else if(c=='p')
         {
-            printf("review product data\n\n\n");
+            printf("Enter specific product: ");
+            char product[15+1];
+            scanf("%s",product);
+            productData(tmp_head,product);
             c=ponovo_meni_analyst();
         }
         else if(c=='w')
@@ -80,7 +84,7 @@ void analystMenu(NODE *head)
     if(c=='l')// vraca u main ako je odabrana opcija Logout
     {
         printf("Logout successful!\n");
-        main(); /// Ako neko ima bolju ideju kako doci do logina ponovo... Ovo je jako lose, al' nisam imao druge ideje
+        main(); /// treba mozda bolji metod
     }
 }
 
@@ -152,7 +156,7 @@ void customerList(NODE *head)
 
 }
 
-void customerArtikls (NODE* head,char* name,char* surname)
+void customerArtikls (NODE* head,char* name,char* surname)  // lista racuna za odredjenog kupca
 {
     while(head)
     {
@@ -187,15 +191,13 @@ void customerArtikls (NODE* head,char* name,char* surname)
 }
 
 
-void artiklsByDate(NODE* head,unsigned char mj)
+void artiklsByDate(NODE* head,unsigned char mj) // lista racuna za odredjeni datum
 {
     if(head==0)
         return printf("Empty list - nema racuna\n");
-        int i=0;
+    int i=0;
     while(head)
     {
-
-        printf("i=%d\n",i);i++;
         fflush(stdin);
         for(int j=0; j<head->n_racuna; j++)
         {
@@ -223,7 +225,45 @@ void artiklsByDate(NODE* head,unsigned char mj)
 
 }
 
+void productData(NODE* head, char* product) // ukupna kol , cijena i total sa svih racuna za odredjeni proizvod
+{
+    if(head==0)
+        return printf("No Data");
+    ARTIKL result;
+    strcpy(result.name,product);
+    result.kol=0;
+    result.cijena=0;
+    result.total=0;
+    while(head)
+    {
+        for(int j=0; j<head->n_racuna; j++)
+        {
+            fflush(stdin);
+            for(int i=0; i<head->artdate[j].n_art; i++)
+            {
+                fflush(stdin);
+                if(strcmp(head->artdate[j].art[i].name,product)==0)
+                {
+                    if(result.kol==0)
+                        strcpy(result.barcode,head->artdate[j].art[i].barcode);
 
+                    result.kol+=head->artdate[j].art[i].kol;
+                    result.cijena+=head->artdate[j].art[i].cijena;
+                    result.total+=head->artdate[j].art[i].total;
+                    break; // jer ne bi trebalo da na istom racunu bude vise proizvoda sa istim imenom
+                }
+            }
+        }
+
+        head=head->next;
+    }
+    fflush(stdin);
+    printf("Result:\n");
+    if(result.kol==0)
+        printf("Product hasn't been purchased yet!\n\n");
+    else
+        printf("%s %s %d %d %d\n\n",result.name,result.barcode,result.kol,result.cijena,result.total);
+}
 
 
 
