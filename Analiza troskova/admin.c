@@ -35,7 +35,9 @@ void adminMenu()
         }
         else if(c=='e')//provjera za izlaz
         {
-            printf("GOOOOODBAYYY! \n");
+            printf("Goodbye! \n");
+            Sleep(1000);
+        system("cls");
 
         }
         else if(c=='h')
@@ -46,7 +48,7 @@ void adminMenu()
         }
         else if(c=='v')
         {
-            printf("valuta\n\n\n");
+            printf("Need to make a function !\n\n\n");
             c=ponovo_meni();
         }
         else if(c=='c')
@@ -67,7 +69,9 @@ void adminMenu()
     }
     if(c=='l') // vraca u main ako je odabrana opcija Logout
     {
-        printf("Logout successful!\n");
+        printf("                              Logout successful!\n");
+        Sleep(2000);
+        system("cls");
         main();/// Ako neko ima bolju ideju kako doci do logina ponovo... Ovo je jako lose, al' nisam imao druge ideje
     }
 }

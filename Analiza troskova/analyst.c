@@ -28,7 +28,9 @@ void analystMenu(NODE *head)
         }
         else if(c=='e')     //provjera za izlaz
         {
-            printf("GOOOOODBAYYY! \n");
+            printf("Goodbye! \n");
+            Sleep(2000);
+        system("cls");
         }
         else if(c=='h')
         {
@@ -83,7 +85,9 @@ void analystMenu(NODE *head)
     }
     if(c=='l')// vraca u main ako je odabrana opcija Logout
     {
-        printf("Logout successful!\n");
+        printf("                            Logout successful!\n");
+        Sleep(2000);
+        system("cls");
         main(); /// treba mozda bolji metod
     }
 }
@@ -194,7 +198,7 @@ void customerArtikls (NODE* head,char* name,char* surname)  // lista racuna za o
 void artiklsByDate(NODE* head,unsigned char mj) // lista racuna za odredjeni datum
 {
     if(head==0)
-        return printf("Empty list - nema racuna\n");
+        return printf("Empty list - no bill\n");
     int i=0;
     while(head)
     {
@@ -262,7 +266,11 @@ void productData(NODE* head, char* product) // ukupna kol , cijena i total sa sv
     if(result.kol==0)
         printf("Product hasn't been purchased yet!\n\n");
     else
-        printf("%s %s %d %d %d\n\n",result.name,result.barcode,result.kol,result.cijena,result.total);
+    {
+        printf("Proizvod        Barcode         Kol Cijena Ukupno\n");
+                printf("_______________ _______________ ___ ______ ______\n");
+        printf("%-15s %-15s %3d %6d %6d\n\n",result.name,result.barcode,result.kol,result.cijena,result.total);
+    }
 }
 
 

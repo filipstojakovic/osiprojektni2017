@@ -9,8 +9,8 @@ char pin2[4+1];
     fflush(stdin);
     do
     {
-        printf("[1] signin as admin\n"
-                "[0] signin as analyst\n"
+        printf("[1] - signin as admin\n"
+                "[0] - signin as analyst\n"
                 "Option: ");
         scanf("%d",&acc.type);
     }while(acc.type<0 || acc.type>1);

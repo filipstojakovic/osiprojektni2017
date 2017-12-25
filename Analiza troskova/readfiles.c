@@ -31,7 +31,7 @@ void renameFile(char *findname) // trenutno se ne koristi findname u funkciji
     DIR *dir;
     struct dirent *dp;
     char findname1[10];
-    printf("Ime datoteke za rename(sa .txt): ");    /// treba napraviti funkciju da provjeri da li ima .txt ili .bin
+    printf("Name of the file to reaname (with .txt): ");    /// treba napraviti funkciju da provjeri da li ima .txt ili .bin
     gets(findname1);
     if ((dir= opendir("./racuni")) == NULL)
     {
@@ -62,7 +62,7 @@ void renameFile(char *findname) // trenutno se ne koristi findname u funkciji
             }
 
         }
-        printf("nema datoteke sa tim nazivom!\n");
+        printf("There is no file with that name!\n");
     }
     closedir(dir);
 }
