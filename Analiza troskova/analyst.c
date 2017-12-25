@@ -168,8 +168,6 @@ void customerArtikls (NODE* head,char* name,char* surname)  // lista racuna za o
         {
             system("cls");
             printf("Kupac: %s %s\n\n",name,surname);
-
-
             for(int j=0; j<head->n_racuna; j++)
             {
                 printf("Datum: %hhu %u\n",head->artdate[j].mj,head->artdate[j].god);
@@ -186,14 +184,11 @@ void customerArtikls (NODE* head,char* name,char* surname)  // lista racuna za o
         }
         head=head->next;
     }
-
     if(head==0)
     {
         printf("No such name!\n");
     }
-
 }
-
 
 void artiklsByDate(NODE* head,unsigned char mj) // lista racuna za odredjeni datum
 {

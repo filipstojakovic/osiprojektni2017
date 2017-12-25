@@ -126,13 +126,15 @@ int checkLogin(int flag) // funkcija koja provjerava ispravnost logina i vraca f
     int i=3;
     while(!login(&flag) && i>0)
     {
+         system("cls");
         printf("*=============================================================================*\n");
         printf("False log in!\n");
         i--;
         if(i==0)
         {
             printf("Sorry no more attempts !\n");
-            return 0;
+            flag=1000;
+            return flag;
         }
         printf("Attempts left : %d\n",i);
     }

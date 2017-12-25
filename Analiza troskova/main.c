@@ -11,36 +11,34 @@
 
 int flag = 0; // prebacio flag da bude globalna prom
 void freeHead(NODE **);
-
 NODE *head=0;
-
 int main()
 {
-
     freeHead(&head);    // zbog logout opcije
-
     flag=checkLogin(&flag); // 1- admin , 0 - analiticar
-
-    printf("You are logged in successfully ");
-    if(flag==0)
+    if(flag==1000)
     {
-        printf("as analyst !\n");
+       printf("You don't have a right account, but you are welcome to come any time! \n\n") ;
+        printf("                                Exit\n");
+        printf("*=============================================================================*\n");
+    }
+    else if(flag==0)
+    {
+        printf("You are logged in successfully as analyst !\n");
         head=fillHead();
-        //      Sleep(1000);// pauzira izvrsavanje programa na par sekundi da se procita poruka iznad
-        system("cls");
+        Sleep(2000);// pauzira izvrsavanje programa na par sekundi da se procita poruka iznad
+        system("cls");//cisti ekran programa
         analystMenu(head);
     }
     else
     {
-        printf("as administrator !\n");
-        //      Sleep(1000);// pauzira izvrsavanje programa na par sekundi da se procita poruka iznad
-        system("cls");
+        printf("You are logged in successfully as administrator !\n");
+        Sleep(2000);// pauzira izvrsavanje programa na par sekundi da se procita poruka iznad
+        system("cls");//cisti ekran programa
         adminMenu();
     }
     getchar();
-
-    // free list
-    freeHead(&head);
+    freeHead(&head);// free list
     return 0;
 }
 

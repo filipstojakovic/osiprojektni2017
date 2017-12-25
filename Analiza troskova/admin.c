@@ -53,6 +53,7 @@ void adminMenu()
         }
         else if(c=='c')
         {
+            printf("*=============================================================================*\n");
             if(rad_sa_account()==0)
                 signin();
             else
@@ -129,7 +130,6 @@ int provjera_slovaDC(char c)
 
 int rad_sa_account()  //funkcija za upravljanje sa account-om
 {
-//
     char c,ch;
     do
     {
@@ -173,6 +173,7 @@ int delete_account()      //funkicja za brisanje accounta
         gets(tmp1.surname);
     }
     while(provjera_imena(tmp1.surname)!=1);
+    system("cls");
     while((fscanf(fp,"%d %s %s %s",&tmp.type,tmp.name,tmp.surname,tmp.pin))==4) //trazenje osobe u datoteci account
     {
 
@@ -204,7 +205,6 @@ int delete_account()      //funkicja za brisanje accounta
     fclose(fp);
     return 0;
 }
-
 void helpMenu() // help menu za adminMenu
 {
     system("cls");

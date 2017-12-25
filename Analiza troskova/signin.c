@@ -27,7 +27,6 @@ char pin2[4+1];
         gets(acc.surname);
 
     }while(checkString(acc.surname)==0);
-
     do
     {
         do
@@ -42,7 +41,6 @@ char pin2[4+1];
             if(strcmp(acc.pin,pin2)!=0)
                 printf("Not confirmed !\n");
     }while(strcmp(acc.pin,pin2));
-
     FILE *fp=fopen("account.txt","r+");
     fseek(fp,0,SEEK_END);
     fprintf(fp," %d %s %s %s",acc.type,acc.name,acc.surname,acc.pin);
@@ -70,7 +68,7 @@ int checkString(char *rec)
         if(pom<65 ||  pom>122)
         {
                    printf("Only letters allowed !\n");
-                    return 0;
+                   return 0;
         }
        if(pom>90 && pom<97)
       {
