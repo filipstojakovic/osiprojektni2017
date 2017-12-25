@@ -1,7 +1,7 @@
 #include "analyst.h"
 
 
-void analystMenu(NODE *head)
+char analystMenu(NODE *head)
 {
     char c,ch;
     printf("*=============================================================================*\n");
@@ -25,12 +25,6 @@ void analystMenu(NODE *head)
         if(ch!='\n' || provera_slova_analyst(c)!=1)    //provjerava da li je unesono slovo jedno od ponudjenih
         {
             printf("Unknown letter !\n");
-        }
-        else if(c=='e')     //provjera za izlaz
-        {
-            printf("Goodbye! \n");
-            Sleep(2000);
-        system("cls");
         }
         else if(c=='h')
         {
@@ -82,14 +76,16 @@ void analystMenu(NODE *head)
     {
         printf("                              Exit\n");
         printf("*=============================================================================*\n");
+        return 'e';
     }
     if(c=='l')// vraca u main ako je odabrana opcija Logout
     {
         printf("                            Logout successful!\n");
         Sleep(2000);
         system("cls");
-        main(); /// treba mozda bolji metod
+        return 'l';
     }
+    return 'a';
 }
 
 int provera_slova_analyst(char s)

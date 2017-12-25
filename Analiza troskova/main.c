@@ -12,30 +12,43 @@
 int flag = 0; // prebacio flag da bude globalna prom
 void freeHead(NODE **);
 NODE *head=0;
+
 int main()
 {
-    freeHead(&head);    // zbog logout opcije
-    flag=checkLogin(&flag); // 1- admin , 0 - analiticar
-    if(flag==1000)
+    while(1)
     {
-       printf("You don't have a right account, but you are welcome to come any time! \n\n") ;
-        printf("                                Exit\n");
-        printf("*=============================================================================*\n");
-    }
-    else if(flag==0)
-    {
-        printf("You are logged in successfully as analyst !\n");
-        head=fillHead();
-        Sleep(2000);// pauzira izvrsavanje programa na par sekundi da se procita poruka iznad
-        system("cls");//cisti ekran programa
-        analystMenu(head);
-    }
-    else
-    {
-        printf("You are logged in successfully as administrator !\n");
-        Sleep(2000);// pauzira izvrsavanje programa na par sekundi da se procita poruka iznad
-        system("cls");//cisti ekran programa
-        adminMenu();
+        char ch;
+        flag=checkLogin(&flag); // 1- admin , 0 - analiticar
+        if(flag==2)
+        {
+            printf("You don't have a right account, but you are welcome to come any time! \n\n") ;
+            printf("                                Exit\n");
+            printf("*=============================================================================*\n");
+            Sleep(2000);
+            break;
+        }
+        else if(flag==0)
+        {
+            printf("You are logged in successfully as analyst !\n");
+            head=fillHead();
+            Sleep(2000);// pauzira izvrsavanje programa na par sekundi da se procita poruka iznad
+            system("cls");//cisti ekran programa
+            ch=analystMenu(head);
+        }
+        else
+        {
+            printf("You are logged in successfully as administrator !\n");
+            Sleep(2000);// pauzira izvrsavanje programa na par sekundi da se procita poruka iznad
+            system("cls");//cisti ekran programa
+            ch=adminMenu();
+        }
+        if(ch=='e')
+        {
+            printf("                              Program is now shutting down!\n\n");
+            Sleep(1000);
+            printf("                                 Press any key to exit!\n");
+            break;
+        }
     }
     getchar();
     freeHead(&head);// free list

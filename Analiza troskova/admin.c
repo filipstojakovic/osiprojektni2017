@@ -4,7 +4,7 @@
 #include "login.h"
 #include "strukture.h"
 
-void adminMenu()
+char adminMenu()
 {
     char c,ch;
     printf("*=============================================================================*\n");
@@ -28,21 +28,12 @@ void adminMenu()
             printf("Wrong option!\n");
             continue;
         }
-
         if(provera_slova(c)!=1)    //provjerava da li je unesono slovo jedno od ponudjenih
         {
             printf("Unknown letter !\n");
         }
-        else if(c=='e')//provjera za izlaz
-        {
-            printf("Goodbye! \n");
-            Sleep(1000);
-        system("cls");
-
-        }
         else if(c=='h')
         {
-
             helpMenu();
             c=ponovo_meni();
         }
@@ -60,21 +51,22 @@ void adminMenu()
                 delete_account();
             c=ponovo_meni();
         }
-        //gets(q);
     }
     while(c!='e' && c!='l');
     if(c=='e')
     {
         printf("                                Exit\n");
         printf("*=============================================================================*\n");
+        return 'e';
     }
     if(c=='l') // vraca u main ako je odabrana opcija Logout
     {
         printf("                              Logout successful!\n");
         Sleep(2000);
         system("cls");
-        main();/// Ako neko ima bolju ideju kako doci do logina ponovo... Ovo je jako lose, al' nisam imao druge ideje
+        return 'l';
     }
+    return 'a';
 }
 
 

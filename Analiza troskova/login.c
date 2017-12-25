@@ -133,7 +133,7 @@ int checkLogin(int flag) // funkcija koja provjerava ispravnost logina i vraca f
         if(i==0)
         {
             printf("Sorry no more attempts !\n");
-            flag=1000;
+            flag=2;
             return flag;
         }
         printf("Attempts left : %d\n",i);
