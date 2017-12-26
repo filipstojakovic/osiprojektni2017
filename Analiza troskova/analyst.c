@@ -190,7 +190,8 @@ void artiklsByDate(NODE* head,unsigned char mj) // lista racuna za odredjeni dat
 {
     if(head==0)
         return printf("Empty list - no bill\n");
-    int i=0;
+
+    int flag=1;
     while(head)
     {
         fflush(stdin);
@@ -199,6 +200,8 @@ void artiklsByDate(NODE* head,unsigned char mj) // lista racuna za odredjeni dat
             fflush(stdin);
             if(head->artdate[j].mj==mj)
             {
+                if(flag)
+                    flag=0;
 
                 printf("Kupac: %s %s\n",head->name,head->surname);
                 printf("Datum: %hhu %u\n",head->artdate[j].mj,head->artdate[j].god);
@@ -217,6 +220,8 @@ void artiklsByDate(NODE* head,unsigned char mj) // lista racuna za odredjeni dat
         fflush(stdin);
         head=head->next;
     }
+    if(head==0 && flag)
+        printf("No data for this month!\n\n");
 
 }
 
