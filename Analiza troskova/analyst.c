@@ -36,7 +36,7 @@ char analystMenu(NODE *head)
 
             char name[15+1], surname[15+1];
             customerList(tmp_head);
-            printf("Enter customer's\nName: ");
+            printf("Enter customer's\nFirstname: ");
             scanf("%s",name);
             fflush(stdin);
             printf("Surname: ");

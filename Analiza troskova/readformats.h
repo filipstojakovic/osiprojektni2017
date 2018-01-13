@@ -11,5 +11,6 @@ POD readFormat1(char*);
 POD readFormat2(char*);
 POD readFormat3(char*);
 POD readFormat4(char*);
+POD readFormat5(char*);
 
 #endif // FORMAT1_H

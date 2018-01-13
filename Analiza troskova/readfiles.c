@@ -176,8 +176,12 @@ NODE* fillHead()    // formira se lista kupaca i njihovih racuna po datumu
                 tmp_pod=readFormat1(fullpath);
             else if(format==2)
                 tmp_pod=readFormat2(fullpath);
-             if(format==4)
-                tmp_pod=readFormat4(fullpath);
+            else if(format==3)
+                tmp_pod=readFormat3(fullpath);
+//           else if(format==4)
+//                tmp_pod=readFormat4(fullpath);
+//            else
+//                tmp_pod=readFormat5(fullpath);
 
             if(head==0)
             {
