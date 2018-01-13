@@ -105,3 +105,54 @@ POD readFormat2(char* d_name) // cita sve podatke iz racuna formata 2
     fclose(fp);
     return pod;
 }
+POD readFormat4(char* d_name)// cita sve podatke iz racuna formata 4
+{
+    FILE *fp;
+    POD pod;
+    if(strstr(d_name,"./racuni")!=0)        // ako je dat pun put do racuna ./racuni/deadpool.txt
+        fp=fopen(d_name,"r");
+    else                                            // else napravi da bude fullpath
+    {
+        char fullpath[50]="./racuni/";
+        strcat(fullpath,d_name);
+        fp=fopen(fullpath,"r");
+    }
+    fscanf(fp,"%*s %s %s",pod.name,pod.surname);        // %*s preskace citanje stringa
+    if(strcmp(pod.surname,"Datum:")==0)
+    {
+        strcpy(pod.surname,"");         // da surname bude brazan
+        fscanf(fp,"%hhu/%hhu/%u",&pod.dan,&pod.mj,&pod.god);
+    }
+    else
+        fscanf(fp,"%*s %hhu/%hhu/%u",&pod.dan,&pod.mj,&pod.god);
+    char ignore[1024];
+    fscanf(fp,"%*s %*s");
+    fgets(ignore,sizeof(ignore),fp);    // preskace red
+    fgets(ignore,sizeof(ignore),fp);
+    fgets(ignore,sizeof(ignore),fp);
+    fscanf(fp,"%*s");
+    int c=10, i=0;
+    pod.art=(ARTIKL*)malloc(c*sizeof(ARTIKL));
+    ARTIKL art;
+    while((fscanf(fp,"%s %s - %d - %d - %d",art.name,art.barcode,&art.kol,&art.cijena,&art.total))==5)
+    {
+        strcpy(pod.art[i].name,art.name);
+        strcpy(pod.art[i].barcode,art.barcode);
+        pod.art[i].kol=art.kol;
+        pod.art[i].cijena=art.cijena;
+        pod.art[i].total=art.total;
+        i++;
+        if(i==c)
+            pod.art=(ARTIKL*)realloc(pod.art,(c *= 2) * sizeof(ARTIKL));
+
+    }
+    pod.art=(ARTIKL*)realloc(pod.art, i * sizeof(ARTIKL));
+    fscanf(fp,"%d",&pod.total);
+    pod.n=i;    // broj artikala
+    fscanf(fp,"%*s %f",&pod.PDV);
+    fscanf(fp,"%*s");
+    fscanf(fp,"%*s %*s %*s %f",&pod.sum);
+    fscanf(fp,"%*s");
+    fclose(fp);
+    return pod;
+}
