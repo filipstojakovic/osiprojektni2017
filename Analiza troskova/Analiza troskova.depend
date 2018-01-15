@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1515870675 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\main.c
+1515855672 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\main.c
 	"login.h"
 	"admin.h"
 	"analyst.h"
@@ -29,7 +29,7 @@
 	"login.h"
 	"strukture.h"
 
-1515869467 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\analyst.c
+1515845370 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\analyst.c
 	"analyst.h"
 
 1515845370 c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\analyst.h
@@ -52,14 +52,14 @@
 	"signin.h"
 	"strukture.h"
 
-1513845830 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\admin.c
+1515845370 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\admin.c
 	"admin.h"
 	<string.h>
 	<stdio.h>
 	"login.h"
 	"strukture.h"
 
-1514136524 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\admin.h
+1515845370 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\admin.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -67,10 +67,10 @@
 	"login.h"
 	"strukture.h"
 
-1514132897 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\analyst.c
+1515845370 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\analyst.c
 	"analyst.h"
 
-1514136527 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\analyst.h
+1515845370 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\analyst.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -78,11 +78,11 @@
 	"readfiles.h"
 	"strukture.h"
 
-1513845830 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\login.c
+1515845370 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\login.c
 	"login.h"
 	"strukture.h"
 
-1514136528 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\login.h
+1515845370 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\login.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -97,22 +97,22 @@
 	"strukture.h"
 	"windows.h"
 
-1514136532 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\signin.h
+1515845370 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\signin.h
 	<stdio.h>
 	<string.h>
 
-1514132897 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\readfiles.c
+1515856343 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\readfiles.c
 	"readfiles.h"
 	"readformats.h"
 
-1514136529 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\readfiles.h
+1515845370 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\readfiles.h
 	<stdio.h>
 	<dirent.h>
 	<unistd.h>
 	<string.h>
 	"strukture.h"
 
-1513845830 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\signin.c
+1515845370 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\signin.c
 	"signin.h"
 	"strukture.h"
 
@@ -285,17 +285,17 @@
 	"readfiles.h"
 	"readformats.h"
 
-1514136533 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\strukture.h
+1515845370 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\strukture.h
 	<stdlib.h>
 
-1514136531 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\readformats.h
+1515856328 c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\readformats.h
 	"strukture.h"
 	<stdio.h>
 	<dirent.h>
 	<unistd.h>
 	<string.h>
 
-1513856070 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\readformats.c
+1515855575 source:c:\users\ognjen pralica\git\osiprojektni2017\analiza troskova\readformats.c
 	"readformats.h"
 	<stdio.h>
 	<string.h>
@@ -310,8 +310,87 @@
 	<unistd.h>
 	<string.h>
 
-1515870488 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\readformats.c
+1515855575 source:c:\users\filip\desktop\git\osiprojektni2017\analiza troskova\readformats.c
 	"readformats.h"
 	<stdio.h>
 	<string.h>
+
+1515845370 source:c:\users\ognjen pralica\desktop\adga\admin.c
+	"admin.h"
+	<string.h>
+	<stdio.h>
+	"login.h"
+	"strukture.h"
+
+1515845370 c:\users\ognjen pralica\desktop\adga\admin.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"signin.h"
+	"login.h"
+	"strukture.h"
+
+1515845370 c:\users\ognjen pralica\desktop\adga\signin.h
+	<stdio.h>
+	<string.h>
+
+1515845370 c:\users\ognjen pralica\desktop\adga\login.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1515845370 c:\users\ognjen pralica\desktop\adga\strukture.h
+	<stdlib.h>
+
+1515845370 source:c:\users\ognjen pralica\desktop\adga\analyst.c
+	"analyst.h"
+
+1515845370 c:\users\ognjen pralica\desktop\adga\analyst.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"admin.h"
+	"readfiles.h"
+	"strukture.h"
+
+1515845370 c:\users\ognjen pralica\desktop\adga\readfiles.h
+	<stdio.h>
+	<dirent.h>
+	<unistd.h>
+	<string.h>
+	"strukture.h"
+
+1515845370 source:c:\users\ognjen pralica\desktop\adga\login.c
+	"login.h"
+	"strukture.h"
+
+1515868809 source:c:\users\ognjen pralica\desktop\adga\main.c
+	"login.h"
+	"admin.h"
+	"analyst.h"
+	"signin.h"
+	"readfiles.h"
+	"readformats.h"
+	"strukture.h"
+	"windows.h"
+
+1515856328 c:\users\ognjen pralica\desktop\adga\readformats.h
+	"strukture.h"
+	<stdio.h>
+	<dirent.h>
+	<unistd.h>
+	<string.h>
+
+1515856343 source:c:\users\ognjen pralica\desktop\adga\readfiles.c
+	"readfiles.h"
+	"readformats.h"
+
+1515855575 source:c:\users\ognjen pralica\desktop\adga\readformats.c
+	"readformats.h"
+	<stdio.h>
+	<string.h>
+
+1515845370 source:c:\users\ognjen pralica\desktop\adga\signin.c
+	"signin.h"
+	"strukture.h"
 

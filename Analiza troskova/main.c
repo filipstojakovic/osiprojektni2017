@@ -9,12 +9,19 @@
 // ovakav komentar je za opis funkcije ili neke komande
 /// ovakav komentar je ako treba neku izmjenu napraviti
 
-int flag = 0; // prebacio flag da bude globalna prom
+int flag ; // prebacio flag da bude globalna prom
 void freeHead(NODE **);
 NODE *head=0;
 
 int main()
 {
+//    POD t=readFormat4("format4.txt");
+//    printf("NAME: %s %s\nDATUM: %d %d %d\nARTIKLI:\n",t.name,t.surname,t.dan,t.mj,t.god);
+//    for(int i=0;i<t.n;i++)
+//        printf("%s %s %d %d %d\n",t.art[i].name,t.art[i].barcode,t.art[i].kol,t.art[i].cijena,t.art[i].total);
+//    printf("TOTAL: %d \nPDV: %.2f \nSUM: %.2f\n",t.total,t.PDV,t.sum);
+//    system("pause");
+
     while(1)
     {
         char ch;
@@ -44,9 +51,9 @@ int main()
         }
         if(ch=='e')
         {
-            printf("                              Program is now shutting down!\n\n");
+            printf("                      Program is now shutting down!\n\n");
             Sleep(1000);
-            printf("                                 Press any key to exit!\n");
+            printf("                         Press any key to exit!\n");
             break;
         }
     }
