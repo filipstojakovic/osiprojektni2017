@@ -1,0 +1,12 @@
+Kupac: ABC
+Datum: 24/8/2017
+
+	       Racun
+
+Proizvod - kolicina - cijena - ukupno
+abc 123  -    10    -    5   -   50
+abb 456  -    20    -   310   -   6200
+---------------------------------------
+Ukupno: 250
+PDV: 42.5
+Ukupno za placanje: 292.5 

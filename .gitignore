@@ -1,0 +1,9 @@
+*.layout
+*.depend
+*.exe
+*.o
+
+
+# generated directories
+bin/
+obj/
