@@ -394,3 +394,82 @@
 	"signin.h"
 	"strukture.h"
 
+1516143598 source:c:\users\ognjen pralica\git\osiprojektni2017\admin.c
+	"admin.h"
+	<string.h>
+	<stdio.h>
+	"login.h"
+	"strukture.h"
+
+1516143598 c:\users\ognjen pralica\git\osiprojektni2017\admin.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"signin.h"
+	"login.h"
+	"strukture.h"
+
+1516143598 c:\users\ognjen pralica\git\osiprojektni2017\signin.h
+	<stdio.h>
+	<string.h>
+
+1516143598 c:\users\ognjen pralica\git\osiprojektni2017\login.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1516143598 c:\users\ognjen pralica\git\osiprojektni2017\strukture.h
+	<stdlib.h>
+
+1516143598 source:c:\users\ognjen pralica\git\osiprojektni2017\analyst.c
+	"analyst.h"
+
+1516143598 c:\users\ognjen pralica\git\osiprojektni2017\analyst.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"admin.h"
+	"readfiles.h"
+	"strukture.h"
+
+1516143598 c:\users\ognjen pralica\git\osiprojektni2017\readfiles.h
+	<stdio.h>
+	<dirent.h>
+	<unistd.h>
+	<string.h>
+	"strukture.h"
+
+1516143598 source:c:\users\ognjen pralica\git\osiprojektni2017\login.c
+	"login.h"
+	"strukture.h"
+
+1516143598 source:c:\users\ognjen pralica\git\osiprojektni2017\main.c
+	"login.h"
+	"admin.h"
+	"analyst.h"
+	"signin.h"
+	"readfiles.h"
+	"readformats.h"
+	"strukture.h"
+	"windows.h"
+
+1516143598 c:\users\ognjen pralica\git\osiprojektni2017\readformats.h
+	"strukture.h"
+	<stdio.h>
+	<dirent.h>
+	<unistd.h>
+	<string.h>
+
+1516143598 source:c:\users\ognjen pralica\git\osiprojektni2017\readfiles.c
+	"readfiles.h"
+	"readformats.h"
+
+1516143598 source:c:\users\ognjen pralica\git\osiprojektni2017\readformats.c
+	"readformats.h"
+	<stdio.h>
+	<string.h>
+
+1516143598 source:c:\users\ognjen pralica\git\osiprojektni2017\signin.c
+	"signin.h"
+	"strukture.h"
+
