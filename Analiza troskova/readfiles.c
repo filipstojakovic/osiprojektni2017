@@ -178,54 +178,64 @@ NODE* fillHead()    // formira se lista kupaca i njihovih racuna po datumu
                 tmp_pod=readFormat2(fullpath);
             else if(format==3)
                 tmp_pod=readFormat3(fullpath);
-           else if(format==4)
+            else if(format==4)
                 tmp_pod=readFormat4(fullpath);
-//            else
+//            else if(format==5)
 //                tmp_pod=readFormat5(fullpath);
+///             else
+///             return "no such format"
 
-            if(head==0)
+            int helping;                //pomocni int za provjeru ispravnosti racuna 1 = ispravan, 0 = neispravan
+            helping = isValid(tmp_pod); //poziv funkcije za provjeru ispravnosti racuna
+            if(helping)
             {
-                NODE* novi=(NODE*)calloc(1,sizeof(NODE));
-                fillNode(&novi,tmp_pod);
-                head=novi;
-            }
-            else
-            {
-                NODE *p;
-                NODE *pp;
-
-                for(p=head; p; p=p->next)
-                {
-                    pp=p;       // pp pokazuje na cvor prije p nakon zavrsetka petlje
-                    fflush(stdin);
-                    if(strcmp(p->name,tmp_pod.name)==0 && strcmp(p->surname,tmp_pod.surname)==0)   // ako postoji kupac
-                    {
-
-                        fflush(stdin);
-                        p->n_racuna+=1;
-                        p->artdate=(ART_DATE*)realloc(p->artdate,p->n_racuna*sizeof(ART_DATE));
-
-                        int m=p->n_racuna-1;        // m je pozicija u nizu tj zadnje mjesto
-
-                        p->artdate[m].mj=tmp_pod.mj;
-                        p->artdate[m].god=tmp_pod.god;
-                        p->artdate[m].n_art=tmp_pod.n;
-                        p->artdate[m].total=tmp_pod.total;
-                        p->artdate[m].PDV=tmp_pod.PDV;
-                        p->artdate[m].sum=tmp_pod.sum;
-                        p->artdate[m].art=tmp_pod.art;
-
-                        break;
-                    }
-                }
-                if( pp->next==0 && p==0)
+                if(head==0)
                 {
                     NODE* novi=(NODE*)calloc(1,sizeof(NODE));
                     fillNode(&novi,tmp_pod);
-                    pp->next=novi;
+                    head=novi;
                 }
+                else
+                {
+                    NODE *p;
+                    NODE *pp;
 
+                    for(p=head; p; p=p->next)
+                    {
+                        pp=p;       // pp pokazuje na cvor prije p nakon zavrsetka petlje
+                        fflush(stdin);
+                        if(strcmp(p->name,tmp_pod.name)==0 && strcmp(p->surname,tmp_pod.surname)==0)   // ako postoji kupac
+                        {
+
+                            fflush(stdin);
+                            p->n_racuna+=1;
+                            p->artdate=(ART_DATE*)realloc(p->artdate,p->n_racuna*sizeof(ART_DATE));
+
+                            int m=p->n_racuna-1;        // m je pozicija u nizu tj zadnje mjesto
+
+                            p->artdate[m].mj=tmp_pod.mj;
+                            p->artdate[m].god=tmp_pod.god;
+                            p->artdate[m].n_art=tmp_pod.n;
+                            p->artdate[m].total=tmp_pod.total;
+                            p->artdate[m].PDV=tmp_pod.PDV;
+                            p->artdate[m].sum=tmp_pod.sum;
+                            p->artdate[m].art=tmp_pod.art;
+                            break;
+                        }
+                    }
+
+                    if( pp->next==0 && p==0)
+                    {
+                        NODE* novi=(NODE*)calloc(1,sizeof(NODE));
+                        fillNode(&novi,tmp_pod);
+                        pp->next=novi;
+                    }
+
+                }
             }
+            else
+                printf("Invalid Bill: %s\n",fullpath);    /// treba napraviti error file name
+                /// free artikal list
         }
     }
     return head;
@@ -244,7 +254,28 @@ void fillNode(NODE** novi, POD tmp) // popunjava cvor (NODE) sa podacima iz POD
     (*novi)->artdate->total=tmp.total;
     (*novi)->artdate->PDV=tmp.PDV;
     (*novi)->artdate->sum=tmp.sum;
+}
 
+int isValid(POD tmp)
+{
+    int i,brArt=tmp.n;
+    float totalHelp=0,pdvHelp=0;
+    for(i=0; i<brArt; i++)
+    {
+        if((tmp.art[i].kol * tmp.art[i].cijena) != tmp.art[i].total)
+        {
+            return 0;
+        }
+        totalHelp+=tmp.art[i].total;
+    }
+    pdvHelp=totalHelp*(float)0.17;
+    if(totalHelp!=tmp.total)
+        return 0;
+    if(pdvHelp!=tmp.PDV)
+        return 0;
+    if((totalHelp+pdvHelp)!=tmp.sum)
+        return 0;
+    return 1;
 }
 
 

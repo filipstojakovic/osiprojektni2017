@@ -12,7 +12,7 @@
 int flag ; // prebacio flag da bude globalna prom
 void freeHead(NODE **);
 NODE *head=0;
-float currency=1.00;
+float currency=1;
 
 int main()
 {
@@ -39,8 +39,9 @@ int main()
         {
             printf("You are logged in successfully as analyst !\n");
             head=fillHead();
-            Sleep(2000);// pauzira izvrsavanje programa na par sekundi da se procita poruka iznad
-            system("cls");//cisti ekran programa
+            system("pause");
+            Sleep(2000);    // pauzira izvrsavanje programa na par sekundi da se procita poruka iznad
+            system("cls");  //cisti ekran programa
             ch=analystMenu(head);
         }
         else
@@ -54,7 +55,7 @@ int main()
         {
             printf("                      Program is now shutting down!\n\n");
             Sleep(1000);
-            printf("                    sam     Press any key to exit!\n");
+            printf("                         Press any key to exit!\n");
             break;
         }
     }

@@ -18,5 +18,6 @@ int detectFormat(char *);                   // format racuna....return 1, 2 ,3 ,
 ART_DATE podToData(POD);
 NODE *fillHead();
 void fillNode(NODE**, POD);
+int isValid(POD);
 
 #endif // READFILES_H

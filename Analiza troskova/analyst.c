@@ -168,7 +168,7 @@ void customerArtikls (NODE* head,char* name,char* surname)  // lista racuna za o
             for(int j=0; j<head->n_racuna; j++)
             {
                 printf("Datum: %hhu %u\n",head->artdate[j].mj,head->artdate[j].god);
-                printf("Proizvod        Barcode         Kol     Cijena   Ukupno\n");
+                printf("Proizvod        Barcode         Kol     Cijena    Ukupno\n");
                 printf("_______________ _______________ _______ _________ __________\n");
                 for(int i=0; i<head->artdate[j].n_art; i++)
                     printf("%-15s %-15s %7.2f %9.2f %10.2f\n",head->artdate[j].art[i].name,head->artdate[j].art[i].barcode,
@@ -207,7 +207,7 @@ void artiklsByDate(NODE* head,unsigned char mj) // lista racuna za odredjeni dat
 
                 printf("Kupac: %s %s\n",head->name,head->surname);
                 printf("Datum: %hhu %u\n",head->artdate[j].mj,head->artdate[j].god);
-                printf("Proizvod        Barcode         Kol     Cijena   Ukupno\n");
+                printf("Proizvod        Barcode         Kol     Cijena    Ukupno\n");
                 printf("_______________ _______________ _______ _________ __________\n");
                 for(int i=0; i<head->artdate[j].n_art; i++)
                 {
@@ -265,7 +265,7 @@ void productData(NODE* head, char* product) // ukupna kol , cijena i total sa sv
         printf("Product hasn't been purchased yet!\n\n");
     else
     {
-        printf("Proizvod        Barcode         Kol     Cijena   Ukupno\n");
+        printf("Proizvod        Barcode         Kol     Cijena    Ukupno\n");
                 printf("_______________ _______________ _______ _________ __________\n");
         printf("%-15s %-15s %7.2f %9.2f %10.2f\n\n",result.name,result.barcode,result.kol,result.cijena*currency,result.total*currency);
     }
