@@ -25,46 +25,28 @@ int fileList()  // lista naziva svih racuna
     return 1;
 }
 
-void renameFile(char *findname) // trenutno se ne koristi findname u funkciji
+void renameFile(char *d_name) // trenutno se ne koristi findname u funkciji
 {
-    // bilo bi dobro da se poziva funkcija kao rename(dp->d_name)
     DIR *dir;
     struct dirent *dp;
-    char findname1[10];
-    printf("Name of the file to reaname (with .txt): ");    /// treba napraviti funkciju da provjeri da li ima .txt ili .bin
-    gets(findname1);
-    if ((dir= opendir("./racuni")) == NULL)
+
+    if ((dir= opendir("./Error")) == NULL)
     {
-        printf("Cannot open ./racuni directory\n");
-        return 0;
+        system("mkdir Error");
     }
     else
-    {
-        while((dp=readdir (dir)) != NULL)       // cita redom fajlove i smjesta u strukturu dp
-        {
-            if(strcmp(dp->d_name,findname)==0)      /// treba malo srediti tijelo
-            {
-                char newname[20];
-                char fullpath[50]="./racuni/";           // zbog ugradjene funkcije "rename()" treba put do fajla
-                char fullpath1[50]="./racuni/";
-                printf("Chose new name: ");
-                gets(newname);
-                strcat(newname,".txt");             /// treba uslova ako je .txt ili .bin
-                strcat(fullpath,dp->d_name);
-                strcat(fullpath1,newname);
-
-                if(rename(fullpath,fullpath1)==0)
-                    printf("renamed");
-                else
-                    printf("NOT renamed");
-                closedir(dir);
-                return;
-            }
-
-        }
-        printf("There is no file with that name!\n");
-    }
+        closedir(dir);
+    char newpath [100]="Error";
+    dir=opendir(newpath);
     closedir(dir);
+    char oldpath[100];
+    strcpy(oldpath,d_name+2);
+
+    int len = strlen("./racuni");
+    strcat(newpath,d_name+len);
+
+   rename(oldpath,newpath);
+
 }
 
 FILE* findFile(char *d_name)    // pronalazi file i vraca pokazivac na otvoreni fajl
@@ -113,7 +95,10 @@ int detectFormat(char *d_name)  // vraca format racuna
     fp=findFile(d_name);
     // fp=fopen(d_name,"r+");
     if(fp==0)
-        return 0;
+        {
+             fclose(fp);
+            return 0;
+        }
 
     fseek(fp,0,SEEK_SET);
     fscanf(fp,"%s",&kupac);
@@ -123,10 +108,11 @@ int detectFormat(char *d_name)  // vraca format racuna
         char jednako;
         fseek(fp,-1,SEEK_END);
         fscanf(fp,"%c",&jednako);
+        fclose(fp);
         if(jednako=='=')
-            return 4;
+                return 4;
         else
-            return 1;
+                return 1;
     }
     else
     {
@@ -136,7 +122,7 @@ int detectFormat(char *d_name)  // vraca format racuna
         for(i=0; i<7; i++)
             fscanf(fp,"%s",tmp);
 
-
+        fclose(fp);
         if(strcmp(tmp,"Kupac:")==0)
             return 3;
         else
@@ -234,8 +220,11 @@ NODE* fillHead()    // formira se lista kupaca i njihovih racuna po datumu
                 }
             }
             else
-                printf("Invalid Bill: %s\n",fullpath);    /// treba napraviti error file name
+              {
+                  renameFile(fullpath);
+                  //  printf("Invalid Bill: %s\n",fullpath);    /// treba napraviti error file name
                 /// free artikal list
+              }
         }
     }
     return head;
