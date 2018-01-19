@@ -1,6 +1,7 @@
 #include "readfiles.h"
 #include "readformats.h"
 
+
 int fileList()  // lista naziva svih racuna
 {
     DIR *dir;
@@ -37,8 +38,7 @@ void renameFile(char *d_name) // trenutno se ne koristi findname u funkciji
     else
         closedir(dir);
     char newpath [100]="Error";
-    dir=opendir(newpath);
-    closedir(dir);
+
     char oldpath[100];
     strcpy(oldpath,d_name+2);
 
@@ -49,57 +49,20 @@ void renameFile(char *d_name) // trenutno se ne koristi findname u funkciji
 
 }
 
-FILE* findFile(char *d_name)    // pronalazi file i vraca pokazivac na otvoreni fajl
-{
-    FILE *fp;
-    DIR *dir;
-    struct dirent *dp;
-    if ((dir= opendir("./racuni")) == NULL)
-    {
-        printf("Cannot open ./racuni directory\n");
-        return 0;
-    }
-    else
-    {
-        while((dp=readdir(dir)) != NULL)       // cita redom fajlove i smjesta u strukturu dp
-        {
-            if(strcmp(dp->d_name,d_name)==0)
-            {
-                char fullpath[50]="./racuni/";
-                strcat(fullpath,dp->d_name);
-
-                if(fp=fopen(fullpath,"r+"))
-                    fseek(fp,0,SEEK_END);
-
-                else
-                {
-                    printf("NOT openedddd\n");
-                    return 0;
-                }
-
-                return fp;
-            }
-        }
-    }
-    return 0;
-}
-
 int detectFormat(char *d_name)  // vraca format racuna
 {
     FILE *fp;
 
-    char kupac[6+1];
-    if(strstr(d_name,".cvs")!=0)
-        return 5;
+    if((strstr(d_name,".csv"))!=0)
+            return 5;
 
-    fp=findFile(d_name);
-    // fp=fopen(d_name,"r+");
+    fp=fopen(d_name,"r");
     if(fp==0)
         {
              fclose(fp);
             return 0;
         }
-
+    char kupac[6+1];
     fseek(fp,0,SEEK_SET);
     fscanf(fp,"%s",&kupac);
 
@@ -166,10 +129,14 @@ NODE* fillHead()    // formira se lista kupaca i njihovih racuna po datumu
                 tmp_pod=readFormat3(fullpath);
             else if(format==4)
                 tmp_pod=readFormat4(fullpath);
-//            else if(format==5)
-//                tmp_pod=readFormat5(fullpath);
-///             else
-///             return "no such format"
+            else if(format==5)
+                tmp_pod=readFormat5(fullpath);
+             else
+                {
+                    printf("%s\n",fullpath);
+                    renameFile(fullpath);
+                    continue;
+                }
 
             int helping;                //pomocni int za provjeru ispravnosti racuna 1 = ispravan, 0 = neispravan
             helping = isValid(tmp_pod); //poziv funkcije za provjeru ispravnosti racuna
@@ -222,11 +189,11 @@ NODE* fillHead()    // formira se lista kupaca i njihovih racuna po datumu
             else
               {
                   renameFile(fullpath);
-                  //  printf("Invalid Bill: %s\n",fullpath);    /// treba napraviti error file name
-                /// free artikal list
+                  free(tmp_pod.art);
               }
         }
     }
+    closedir(dir);
     return head;
 }
 
@@ -249,21 +216,23 @@ int isValid(POD tmp)
 {
     int i,brArt=tmp.n;
     float totalHelp=0,pdvHelp=0;
+    const EPS=0.001;
     for(i=0; i<brArt; i++)
     {
-        if((tmp.art[i].kol * tmp.art[i].cijena) != tmp.art[i].total)
-        {
+        if(fabs((tmp.art[i].kol * tmp.art[i].cijena) - tmp.art[i].total)<EPS)
             return 0;
-        }
+
         totalHelp+=tmp.art[i].total;
     }
     pdvHelp=totalHelp*(float)0.17;
-    if(totalHelp!=tmp.total)
-        return 0;
-    if(pdvHelp!=tmp.PDV)
-        return 0;
-    if((totalHelp+pdvHelp)!=tmp.sum)
-        return 0;
+
+    if(fabs(totalHelp-tmp.total)<EPS)
+        return  0;
+    if(fabs(pdvHelp - tmp.PDV)<EPS)
+        return  0;
+    if(fabs((totalHelp+pdvHelp) - tmp.sum) < EPS)
+        return  0;
+
     return 1;
 }
 

@@ -229,6 +229,65 @@ POD readFormat4(char* d_name)
 
 
 
+POD readFormat5(char* d_name)       /// ./racuni/KupacA#24.10.2017.csv
+{
+    int i;
+    FILE *fp;
+    POD pod;
+    char name[30];
+    if(!sscanf(d_name, "./racuni/%[^#]#%d.%d.%d",name,&pod.dan,&pod.mj,&pod.god))
+        return pod;
+
+    if(strstr(name," "))
+        sscanf(name,"%s %s",pod.name,pod.surname);
+    else
+        strcpy(pod.name,name);
+
+
+    if(strstr(d_name,"./racuni")!=0)        // ako je dat pun put do racuna ./racuni/deadpool.txt
+        fp=fopen(d_name,"rb");
+    else                                            // else napravi da bude fullpath
+    {
+        char fullpath[50]="./racuni/";
+        strcat(fullpath,d_name);
+        fp=fopen(fullpath,"rb");
+    }
+    char buffer[100];
+    fgets(&buffer,100,fp);
+    fflush(stdin);
+    int c=10;
+    i=0;
+    pod.art=(ARTIKL*)malloc(c*sizeof(ARTIKL));
+
+    float total=0;
+    float PDV=0;
+    float sum=0;
+    ARTIKL art;
+
+    while(fscanf(fp,"%[^,] , %f , %f , %f\n",&art.name,&art.kol,&art.cijena,&art.total)==4)
+        {
+            fflush(stdin);
+            strcpy(pod.art[i].name,art.name);
+            strcpy(pod.art[i].barcode,art.barcode);
+            pod.art[i].kol=art.kol;
+            pod.art[i].cijena=art.cijena;
+            pod.art[i].total=art.total;
+            total+=art.total;
+            i++;
+            if(i==c)
+                pod.art=(ARTIKL*)realloc(pod.art,(c *= 2) * sizeof(ARTIKL));
+        }
+    pod.total=total;
+    pod.PDV=total*(float)0.17;
+    pod.sum=pod.total+pod.PDV;
+
+     pod.art=(ARTIKL*)realloc(pod.art, i * sizeof(ARTIKL));
+     pod.n=i;
+
+    fclose(fp);
+    return pod;
+}
+
 
 
 
