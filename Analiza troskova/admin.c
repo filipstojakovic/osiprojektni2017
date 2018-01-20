@@ -2,29 +2,29 @@
 #include <string.h>
 #include <stdio.h>
 #include "login.h"
-#include "strukture.h"
+#include "structures.h"
 #define EURO 1.00
 #define KM 1.95
 #define DINAR 118.37
 
-extern float currency;
+extern float currency;//variable that is used for changing the currency
 
 char adminMenu()
 {
     char c,ch;
     printf("*=============================================================================*\n");
-    printf("                    Welcome Administrator! \n\n");
+    printf("                             Welcome Administrator! \n\n");
     printCurrency();
     do
     {
         fflush(stdin);
         printf("*=============================================================================*\n");
-        printf("[c] - account managment\n");
-        printf("[v] - currency settings\n");
-        printf("[h] - help menu\n");
+        printf("[c] - Account managment\n");
+        printf("[v] - Currency settings\n");
+        printf("[h] - Help menu\n");
         printf("=======================\n");
-        printf("[l] - logout\n");
-        printf("[e] - exit\n");
+        printf("[l] - Logout\n");
+        printf("[e] - Exit\n");
         printf("Option: ");
         scanf("%c",&c);
         scanf("%c",&ch);
@@ -34,38 +34,38 @@ char adminMenu()
             printf("Wrong option!\n");
             continue;
         }
-        if(provera_slova(c)!=1)    //provjerava da li je unesono slovo jedno od ponudjenih
+        if(letters_check_admin_menu(c)!=1)
         {
             printf("Unknown letter !\n");
         }
         else if(c=='h')
         {
             helpMenu();
-            c=ponovo_meni();
+            c=again_menu();
         }
         else if(c=='v')
         {
            changeCurrency();
-            c=ponovo_meni();
+           c=again_menu();
         }
         else if(c=='c')
         {
             printf("*=============================================================================*\n");
-            if(rad_sa_account()==0)
+            if(account_menu()==0)
                 signin();
             else
                 delete_account();
-            c=ponovo_meni();
+            c=again_menu();
         }
     }
     while(c!='e' && c!='l');
     if(c=='e')
     {
-        printf("                                Exit\n");
+        printf("                                    Exit\n");
         printf("*=============================================================================*\n");
         return 'e';
     }
-    if(c=='l') // vraca u main ako je odabrana opcija Logout
+    if(c=='l')
     {
         printf("                              Logout successful!\n");
         Sleep(2000);
@@ -75,28 +75,25 @@ char adminMenu()
     return 'a';
 }
 
-
-char ponovo_meni()   //funkcija preko koje se ponovo vraca u meni ili izlazi iz programa
+char again_menu()
 {
     char c,ch,s;
     do
     {
         fflush(stdin);
         printf("Do you want to go back to menu ? \n");
-        printf("[y] - yes\n");
-        printf("[n] - no\n");
+        printf("[y] - Yes\n");
+        printf("[n] - No\n");
         fflush(stdin);
         printf("Option: ");
         scanf("%c",&c);
         scanf("%c",&ch);
-        if(ch!='\n' || provera_slovaYN(c)!=1)
+        if(ch!='\n' || letters_check_Y_N(c)!=1)
         {
             printf("Wrong option!\n");
             continue;
         }
-
-    }while(ch!='\n' || provera_slovaYN(c)!=1);
-
+    }while(ch!='\n' || letters_check_Y_N(c)!=1);
     if(c=='y')
         s='y';
     else if(c=='n')
@@ -105,20 +102,21 @@ char ponovo_meni()   //funkcija preko koje se ponovo vraca u meni ili izlazi iz 
     return s;
 }
 
-
-int provera_slova(char s)  //funkcija za provjeru slova iz admin_meni
+int letters_check_admin_menu(char s)
 {
     if( s!='c'&& s!='v' && s!='h' && s!='e' && s!='l')
         return 0;
     return 1;
 }
-int provera_slovaYN( char s)  //funkcija za provjeru slova iz ponovo_meni
+
+int letters_check_Y_N( char s)
 {
     if( s=='y' ||  s=='n' )
         return 1;
     return 0;
 }
-int provjera_slovaDC(char c)
+
+int letters_check_D_C(char c)
 {
     if(c=='d' || c=='c')
         return 1;
@@ -126,32 +124,30 @@ int provjera_slovaDC(char c)
         return 0;
 }
 
-int rad_sa_account()  //funkcija za upravljanje sa account-om
+int account_menu()
 {
     char c,ch;
     do
     {
         fflush(stdin);
-        printf("[d]- delete account \n");
-        printf("[c]- create new account \n");
+        printf("[d]- Delete account \n");
+        printf("[c]- Create new account \n");
         printf("Option: ");
         scanf("%c",&c);
         scanf("%c",&ch);
-        if(ch!='\n' || provjera_slovaDC(c)==0 )
+        if(ch!='\n' || letters_check_D_C(c)==0 )
         {
             printf("Wrong option!\n");
             continue;
         }
-
-    }while(ch!='\n' || provjera_slovaDC(c)==0);
-
+    }while(ch!='\n' || letters_check_D_C(c)==0);
     if(c=='d')
         return 1;
     else
         return 0;
 }
 
-int delete_account()      //funkicja za brisanje accounta
+int delete_account()
 {
     int br=0;
     FILE *fp=fopen("account.txt","r+");
@@ -159,26 +155,24 @@ int delete_account()      //funkicja za brisanje accounta
     ACCOUNT tmp, tmp1;
     printf("Chose  account to delete :\n");
     fflush(stdin);
-    do                          //provjera da li je dobro uneseno ime
+    do
     {
         printf("Name: ");
         gets(tmp1.name);
     }
-    while(provjera_imena(tmp1.name)!=1);
-    do                                  //provjera da li je dobro uneseno prezime
+    while(letters_only_allowed(tmp1.name)!=1);
+    do
     {
         printf("Surname: ");
         gets(tmp1.surname);
     }
-    while(provjera_imena(tmp1.surname)!=1);
+    while(letters_only_allowed(tmp1.surname)!=1);
     system("cls");
-    while((fscanf(fp,"%d %s %s %s",&tmp.type,tmp.name,tmp.surname,tmp.pin))==4) //trazenje osobe u datoteci account
+    while((fscanf(fp,"%d %s %s %s",&tmp.type,tmp.name,tmp.surname,tmp.pin))==4) //searching for accaunt
     {
-
-        if(strcmp(tmp.name,tmp1.name)==0 && strcmp(tmp.surname,tmp1.surname)==0 ) //pronalazenje osobe
+        if(strcmp(tmp.name,tmp1.name)==0 && strcmp(tmp.surname,tmp1.surname)==0 ) //if the account is found
         {
             br++;
-            //ACCOUNT tmp2;
             int d=strlen(tmp.name);
             d+=strlen(tmp.surname);
             d+=strlen(tmp.pin);
@@ -191,19 +185,15 @@ int delete_account()      //funkicja za brisanje accounta
             printf("%s %s account successfully deleted !\n",tmp1.name,tmp1.surname);
             fclose(fp);
             return 1;
-
         }
     }
-    if(br==0)                           //provjera da li postoji account
+    if(br==0)                           //if the account exsists
         printf("Unsuccessfully to find account !\n");
-//    fflush(stdin);
-//    fseek(fp,0,SEEK_SET);
-//    while((fscanf(fp,"%d %s %s %s",&tmp.type,tmp.name,tmp.surname,tmp.pin))==4)
-//        printf("%d %s %s %s\n",tmp.type,tmp.name,tmp.surname,tmp.pin);
     fclose(fp);
     return 0;
 }
-void helpMenu() // help menu za adminMenu
+
+void helpMenu()
 {
     system("cls");
     printf("Accout managment:\n");

@@ -6,17 +6,17 @@
 #include <string.h>
 #include "admin.h"
 #include "readfiles.h"
-#include "strukture.h"
+#include "structures.h"
 
-char analystMenu(NODE* );
-int provera_slova_analyst(char );  // za Analyst menu
-int provera_slovaYN_analyst(char ); // provjera yes || no za Analyst menu
-char ponovo_meni_analyst();
-void helpMenu_analyst(); // kratak opis funkcija u Analyst meniju
-void customerList(NODE *);
-void customerArtikls (NODE*,char*,char*);
-void artiklsByDate(NODE*,unsigned char);
-void productData(NODE* , char* );
+char analystMenu(NODE* );//the main analyst menu with all of his functions
+int letters_check_analyst_menu(char ); //letters needed to chose a function in analystMenu
+int letters_check_analyst_Y_N(char ); //letters for function again_menu_analyst
+char again_menu_analyst();//analyst can chose to go back to his menu or end the program
+void helpMenu_analyst(); //menu with detail description of each analystMenu function
+void customerList(NODE *);//function that prints full name and surname of customers
+void customerArtikls (NODE*,char*,char*);//function that shows a list of bills for specific customer
+void artiklsByDate(NODE*,unsigned char);//function thay shows a list of bills for specific date
+void productData(NODE* , char* );//function that shows all details of chosen product from all bills
 
 
 #endif // ANALITCOMMANDS_H

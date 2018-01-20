@@ -5,17 +5,14 @@
 #include <dirent.h>
 #include <unistd.h>
 #include <string.h>
-#include "strukture.h"
+#include "structures.h"
 #include "math.h"
 
-//#include <errno.h> za sad ne treba
-
-
-int fileList();     // cita sve fajlove iz foldera " racuni "
-void renameFile(char *findname);        // pronadji fajl (findname) i promjeni naziv
-int detectFormat(char *);                   // format racuna....return 1, 2 ,3 ,4 ,5
-NODE *fillHead();
-void fillNode(NODE**, POD);
-int isValid(POD);
+int fileList();//function that reads all files from the "account" folder
+void renameFile(char *findname);//function that renames the file name
+int detectFormat(char *);//function that detects all formats from "bills" folder
+NODE *fillHead();//function that forms a list of customers and theys bills
+void fillNode(NODE**, POD);//extra function that makes a new customer and his bill
+int isValid(POD);//verifies the validity of existing bills
 
 #endif // READFILES_H

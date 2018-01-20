@@ -6,18 +6,18 @@
 #include <string.h>
 #include "signin.h"
 #include "login.h"
-#include "strukture.h"
+#include "structures.h"
 
-int provera_slova(char );  // za admin menu
-int provera_slovaYN(char ); // yes || no
-int provjera_slovaDC(char ); // 'd' or 'c'
-char adminMenu();
-char ponovo_meni();
-int rad_sa_account();
-int delete_account();
-void helpMenu(); // kratak opis funkcija u administratorskom meniju
-void printCurrency();
-void changeCurrency();
+int letters_check_admin_menu(char ); // letters needed to chose a function in adminMenu
+int letters_check_Y_N(char ); // letters for again_menu function : yes or no
+int letters_check_D_C(char ); //letters for account_menu function : delete or create account
+char adminMenu();//administrators main menu with all of his functions
+char again_menu();//administrator can chose to go back to his menu or end the program
+int account_menu();//options to create a new or delete an exsisting account
+int delete_account();//deleting account from program
+void helpMenu(); //menu with detail description of each adminMenu function
+void printCurrency();//function that prints the current currency
+void changeCurrency();//function that change current currency
 
 
 #endif // ADMIN_H
