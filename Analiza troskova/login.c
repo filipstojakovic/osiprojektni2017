@@ -16,9 +16,10 @@ int checkFile()
 int checkAccount(char *name,char* surname, char *pin, int *flag)
 {
     int status =  checkFile();
-    FILE *fp1=fopen("account.txt","a+");
+
     if(status==1)
     {
+        FILE *fp1=fopen("account.txt","r");
         ACCOUNT acc1;
         while(fscanf(fp1,"%d %s %s %s",&acc1.type,acc1.name,acc1.surname,acc1.pin)==4)
         {
@@ -34,6 +35,7 @@ int checkAccount(char *name,char* surname, char *pin, int *flag)
     }
     else
     {
+        FILE *fp1=fopen("account.txt","a+");
         fprintf(fp1,"1 admin admin 0000");
         if(!strcmp(name,"admin") && !strcmp(surname,"admin") && !strcmp(pin,"0000"))
         {
