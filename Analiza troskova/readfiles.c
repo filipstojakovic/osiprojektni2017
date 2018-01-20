@@ -33,7 +33,7 @@ void renameFile(char *d_name)
     }
     else
         closedir(dir);
-    char newpath [100]="Error";
+    char newpath [100]="./Error";
     char oldpath[100];
     strcpy(oldpath,d_name+2);
     int len = strlen("./bills");
@@ -46,22 +46,15 @@ int detectFormat(char *d_name)
     FILE *fp;
     if((strstr(d_name,".csv"))!=0)
             return 5;
-    if(strstr(d_name,".bills/")==0)
-    {
-         char fullpath[50]="./bills/";
-         strcat(fullpath,d_name);
-         strcpy(d_name,fullpath);
-    }
+
     fp=fopen(d_name,"r");
     if(fp==0)
-        {
-             fclose(fp);
-            return 0;
-        }
+        return 0;
+
     char customer[6+1];
     fseek(fp,0,SEEK_SET);
     fscanf(fp,"%s",&customer);
-    if(strcmp(customer,"Customer:")==0)
+    if(strcmp(customer,"Kupac:")==0)
     {
         char even;
         fseek(fp,-1,SEEK_END);
@@ -72,7 +65,7 @@ int detectFormat(char *d_name)
         else
                 return 1;
     }
-    else
+    else if (strcmp(customer,"OSI:")!=0)
     {
         char tmp[15];
         int i;
@@ -80,7 +73,7 @@ int detectFormat(char *d_name)
         for(i=0; i<7; i++)
             fscanf(fp,"%s",tmp);
         fclose(fp);
-        if(strcmp(tmp,"Customer:")==0)
+        if(strcmp(tmp,"Kupac:")==0)
             return 3;
         else
             return 2;
@@ -108,7 +101,8 @@ NODE* fillHead()
                 continue;
             char fullpath[50]="./bills/";
             strcat(fullpath,dp->d_name);
-            int format=detectFormat(dp->d_name);
+            int format=detectFormat(fullpath);
+
             POD tmp_pod;
             if(format==1)
                 tmp_pod=readFormat1(fullpath);
@@ -122,12 +116,13 @@ NODE* fillHead()
                 tmp_pod=readFormat5(fullpath);
              else
                 {
-                    printf("%s\n",fullpath);
+                   // printf("%s\n",fullpath);
                     renameFile(fullpath);
                     continue;
                 }
             int helping;
             helping = isValid(tmp_pod);
+
             if(helping)
             {
                 if(head==0)
@@ -198,19 +193,19 @@ int isValid(POD tmp)
 {
     int i,brArt=tmp.n;
     float totalHelp=0,pdvHelp=0;
-    const EPS=0.001;
+    const float  EPS=0.001;
     for(i=0; i<brArt; i++)
     {
-        if(fabs((tmp.art[i].amount * tmp.art[i].price) - tmp.art[i].total)<EPS)
+        if(fabs((tmp.art[i].amount * tmp.art[i].price) - tmp.art[i].total)>EPS)
             return 0;
         totalHelp+=tmp.art[i].total;
     }
     pdvHelp=totalHelp*(float)0.17;
-    if(fabs(totalHelp-tmp.total)<EPS)
+    if(fabs(totalHelp-tmp.total)>EPS)
         return  0;
-    if(fabs(pdvHelp - tmp.PDV)<EPS)
+    if(fabs(pdvHelp - tmp.PDV)>EPS)
         return  0;
-    if(fabs((totalHelp+pdvHelp) - tmp.sum) < EPS)
+    if(fabs((totalHelp+pdvHelp) - tmp.sum) > EPS)
         return  0;
     return 1;
 }

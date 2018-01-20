@@ -13,7 +13,7 @@ typedef struct account //structure that contains all information for a administr
 
 typedef struct artikl //structure that contains all the information about a specific product
 {
-    char name[15+1];
+    char name[20+1];
     char barcode[15+1];
     float amount;
     float price;

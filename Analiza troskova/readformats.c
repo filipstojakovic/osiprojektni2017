@@ -15,13 +15,13 @@ POD readFormat1(char* d_name) /// readFormat1...................................
         fp=fopen(fullpath,"r");
     }
     fscanf(fp,"%*s %s %s",pod.name,pod.surname);
-    if(strcmp(pod.surname,"Date:")==0)
+    if(strcmp(pod.surname,"Datum:")==0)
     {
         strcpy(pod.surname,"");
-        fscanf(fp,"%hhu/%hhu/%u",&pod.day,&pod.month,&pod.year);
+        fscanf(fp,"%hu/%hu/%u",&pod.day,&pod.month,&pod.year);
     }
     else
-        fscanf(fp,"%*s %hhu/%hhu/%u",&pod.day,&pod.month,&pod.year);
+        fscanf(fp,"%*s %hu/%hu/%u",&pod.day,&pod.month,&pod.year);
     char ignore[1024];
     fscanf(fp,"%*s");
     fgets(ignore,sizeof(ignore),fp);
@@ -69,7 +69,7 @@ POD readFormat2(char* d_name) /// readFormat2...................................
     for(l=0; l<n; l++)
         fgets(ignore,sizeof(ignore),fp);
     fscanf(fp,"%*s %s %s",pod.name,pod.surname);
-    if(strcmp(pod.surname,"Product")==0)
+    if(strcmp(pod.surname,"Proizvod")==0)
     {
         strcpy(pod.surname,"");
         n=2;
@@ -98,7 +98,7 @@ POD readFormat2(char* d_name) /// readFormat2...................................
     fscanf(fp,"%f",&pod.total);
     fscanf(fp,"%*s %f",&pod.PDV);
     fscanf(fp,"%*s %*s %*s %f",&pod.sum);
-    fscanf(fp,"%*s %hhu/%hhu/%u",&pod.day,&pod.month,&pod.year);
+    fscanf(fp,"%*s %hu/%hu/%u",&pod.day,&pod.month,&pod.year);
     fclose(fp);
     return pod;
 }
@@ -120,14 +120,14 @@ POD readFormat3(char* d_name)     /// readFormat3...............................
     for(int i=0; i<row; i++)
         fgets(ignore,sizeof(ignore),fp);
     fscanf(fp,"%*s %s %s",pod.name, pod.surname);
-    if(strcmp(pod.surname,"Date:")==0)
+    if(strcmp(pod.surname,"Datum:")==0)
     {
         strcpy(pod.surname,"");
-        fscanf(fp,"%hhu/%hhu/%u",&pod.day,&pod.month,&pod.year);
+        fscanf(fp,"%hu/%hu/%u",&pod.day,&pod.month,&pod.year);
     }
     else
     {
-        fscanf(fp,"%*s %hhu/%hhu/%u",&pod.day,&pod.month,&pod.year);
+        fscanf(fp,"%*s %hu/%hu/%u",&pod.day,&pod.month,&pod.year);
     }
     row=6;
     for(int i=0; i<row; i++)
@@ -174,13 +174,13 @@ POD readFormat4(char* d_name) /// readFormat4...................................
         fp=fopen(fullpath,"r");
     }
     fscanf(fp,"%*s %s %s",pod.name,pod.surname);
-    if(strcmp(pod.surname,"Date:")==0)
+    if(strcmp(pod.surname,"Datum:")==0)
     {
         strcpy(pod.surname,"");
-        fscanf(fp,"%hhu/%hhu/%u",&pod.day,&pod.month,&pod.year);
+        fscanf(fp,"%hu/%hu/%u",&pod.day,&pod.month,&pod.year);
     }
     else
-        fscanf(fp,"%*s %hhu/%hhu/%u",&pod.day,&pod.month,&pod.year);
+        fscanf(fp,"%*s %hu/%hu/%u",&pod.day,&pod.month,&pod.year);
     char ignore[1024];
     fscanf(fp,"%*s %*s");
     fgets(ignore,sizeof(ignore),fp);
@@ -246,7 +246,7 @@ POD readFormat5(char* d_name)     /// readFormat5  ./bills/CustomerA#24.10.2017.
         {
             fflush(stdin);
             strcpy(pod.art[i].name,art.name);
-            strcpy(pod.art[i].barcode,art.barcode);
+            strcpy(pod.art[i].barcode,"\0");
             pod.art[i].amount=art.amount;
             pod.art[i].price=art.price;
             pod.art[i].total=art.total;

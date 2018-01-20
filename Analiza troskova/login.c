@@ -16,7 +16,7 @@ int checkFile()
 int checkAccount(char *name,char* surname, char *pin, int *flag)
 {
     int status =  checkFile();
-    FILE *fp1=fopen("account.txt","r+");
+    FILE *fp1=fopen("account.txt","a+");
     if(status==1)
     {
         ACCOUNT acc1;

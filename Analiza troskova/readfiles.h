@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <string.h>
 #include "structures.h"
-#include "math.h"
+#include <math.h>
 
 int fileList();//function that reads all files from the "account" folder
 void renameFile(char *findname);//function that renames the file name

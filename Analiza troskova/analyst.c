@@ -161,12 +161,15 @@ void customerArtikls(NODE* head,char* name,char* surname)
             for(int j=0; j<head->num_bill; j++)
             {
                 printf("Date: %hhu %u\n",head->artdate[j].month,head->artdate[j].year);
-                printf("Product        Barcode         Amount     Price    Total\n");
-                printf("_______________ _______________ _______ _________ __________\n");
+                printf("Product               Amount     Price      Total\n");
+                printf("____________________ _______ _________ __________\n");
                 for(int i=0; i<head->artdate[j].n_art; i++)
-                    printf("%-15s %-15s %7.2f %9.2f %10.2f\n",head->artdate[j].art[i].name,head->artdate[j].art[i].barcode,
+                    {
+                        strcat(head->artdate[j].art[i].name, head->artdate[j].art[i].barcode);
+                        printf("%-20s %7.2f %9.2f %10.2f\n",head->artdate[j].art[i].name,
                            head->artdate[j].art[i].amount,head->artdate[j].art[i].price*currency,
                            head->artdate[j].art[i].total*currency);
+                    }
                 printf("\nTotal: %.2f\tPDV: %.2f\tSum:%.2f\n\n",head->artdate[j].total,head->artdate[j].PDV,head->artdate[j].sum);
                 printf("\n");
             }
@@ -198,11 +201,12 @@ void artiklsByDate(NODE* head,unsigned char month)
                     flag=0;
                 printf("Customer: %s %s\n",head->name,head->surname);
                 printf("Date: %hhu %u\n",head->artdate[j].month,head->artdate[j].year);
-                printf("Product        Barcode         Amount     Price    Total\n");
-                printf("_______________ _______________ _______ _________ __________\n");
+                printf("Product               Amount     Price      Total\n");
+                printf("____________________ _______ _________ __________\n");
                 for(int i=0; i<head->artdate[j].n_art; i++)
                 {
-                    printf("%-15s %-15s %7.2f %9.2f %10.2f\n",head->artdate[j].art[i].name,head->artdate[j].art[i].barcode,
+                    strcat(head->artdate[j].art[i].name,head->artdate[j].art[i].barcode);
+                    printf("%-20s %7.2f %9.2f %10.2f\n",head->artdate[j].art[i].name,
                            head->artdate[j].art[i].amount,head->artdate[j].art[i].price*currency,
                            head->artdate[j].art[i].total*currency);
                 }
@@ -252,9 +256,10 @@ void productData(NODE* head, char* product)
         printf("Product hasn't been purchased yet!\n\n");
     else
     {
-        printf("Product        Barcode         Amount     Price    Total\n");
-                printf("_______________ _______________ _______ _________ __________\n");
-        printf("%-15s %-15s %7.2f %9.2f %10.2f\n\n",result.name,result.barcode,result.amount,result.price*currency,result.total*currency);
+       printf("Product               Amount     Price      Total\n");
+       printf("____________________ _______ _________ __________\n");
+       strcat(result.name,result.barcode);
+        printf("%-20s %7.2f %9.2f %10.2f\n\n",result.name,result.amount,result.price*currency,result.total*currency);
     }
 }
 
