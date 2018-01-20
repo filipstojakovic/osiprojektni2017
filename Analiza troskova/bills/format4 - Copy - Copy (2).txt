@@ -1,4 +1,4 @@
-Kupac: ABC
+Kupac: ogi majstor
 Datum: 24/10/2017
 		
 	      OSI Market
@@ -6,7 +6,7 @@ Datum: 24/10/2017
 Proizvod - kolicina - cijena - ukupno
 ---------------------------------------
 abc 123  -    10    -    5   -   50
-abb 456  -    20    -   10   -   200
+abb 255  -    20    -   10   -   200
 ---------------------------------------
 Ukupno: 250
 PDV: 42.5
@@ -14,4 +14,3 @@ PDV: 42.5
 Ukupno za placanje: 292.5 
 
 =======================================
-

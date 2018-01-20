@@ -16,6 +16,7 @@ char analystMenu(NODE *head)
         printf("[r] - Review customer data\n");
         printf("[p] - Review product data\n");
         printf("[w] - Review of sale data\n");
+        printf("[s] - Statistics review\n");
         printf("[h] - Help menu\n");
         printf("==========================\n");
         printf("[l] - Logout\n");
@@ -45,6 +46,11 @@ char analystMenu(NODE *head)
             surname[strlen(surname)-1]=0;
             customerArtikls(tmp_head,name,surname);
             fflush(stdin);
+            c=again_menu_analyst();
+        }
+        else if(c=='s')
+        {
+            statistics_review(tmp_head);
             c=again_menu_analyst();
         }
         else if(c=='p')
@@ -89,7 +95,7 @@ char analystMenu(NODE *head)
 
 int letters_check_analyst_menu(char s)
 {
-    if( s!='r' && s!='w' && s!='h' && s!='e' && s!='p' && s!='l')
+    if( s!='r' && s!='w' && s!='h' && s!='e' && s!='p' && s!='l' && s!='s')
         return 0;
     return 1;
 }
@@ -137,6 +143,8 @@ void helpMenu_analyst()
     printf("This option reviews all data for a specific product. \n\n\n");
     printf("Review Of Sale Data:\n");
     printf("This option reviews data for all sales made in a specific timeline \n\n\n");
+    printf("Statistics review:\n");
+    printf("This option reviews total trafficing of company.\n\n\n");
 }
 
 void customerList(NODE *head)
@@ -170,7 +178,7 @@ void customerArtikls(NODE* head,char* name,char* surname)
                            head->artdate[j].art[i].amount,head->artdate[j].art[i].price*currency,
                            head->artdate[j].art[i].total*currency);
                     }
-                printf("\nTotal: %.2f\tPDV: %.2f\tSum:%.2f\n\n",head->artdate[j].total,head->artdate[j].PDV,head->artdate[j].sum);
+                printf("\nTotal: %.2f\tPDV: %.2f\tSum: %.2f\n\n",head->artdate[j].total,head->artdate[j].PDV,head->artdate[j].sum);
                 printf("\n");
             }
             printf("\n");
@@ -210,7 +218,7 @@ void artiklsByDate(NODE* head,unsigned char month)
                            head->artdate[j].art[i].amount,head->artdate[j].art[i].price*currency,
                            head->artdate[j].art[i].total*currency);
                 }
-                printf("\nTotal: %.2f\tPDV: %.2f\tSum:%.2f\n\n",head->artdate[j].total,head->artdate[j].PDV,head->artdate[j].sum);
+                printf("\nTotal: %.2f\tPDV: %.2f\tSum: %.2f\n\n",head->artdate[j].total,head->artdate[j].PDV,head->artdate[j].sum);
             }
         }
         fflush(stdin);
@@ -263,8 +271,35 @@ void productData(NODE* head, char* product)
     }
 }
 
-
-
+void statistics_review(NODE* head)
+{
+    ART_DATE result;
+    NODE* temp=head;
+    result.total=0;
+    result.sum=0;
+    result.PDV=0;
+    if(temp==0)
+        return printf("No Data\n");
+    while(temp)
+    {
+        int j;
+        for(j=0;j<temp->num_bill;j++)
+        {
+         result.total+=temp->artdate[j].total;
+         result.sum+=temp->artdate[j].sum;
+         result.PDV+=temp->artdate[j].PDV;
+        }
+        temp=temp->next;
+    }
+    fflush(stdin);
+    if(result.total==0 || result.sum==0 ||  result.PDV==0)
+        printf("Product hasn't been purchased yet!\n\n");
+    else
+    {
+        printf("Results of total turn over:");
+        printf("\nTotal: %.2f\nPDV: %.2f\nSum: %.2f\n\n",result.total,result.PDV,result.sum);
+    }
+}
 
 
 

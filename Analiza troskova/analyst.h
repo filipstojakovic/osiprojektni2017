@@ -16,7 +16,7 @@ void helpMenu_analyst(); //menu with detail description of each analystMenu func
 void customerList(NODE *);//function that prints full name and surname of customers
 void customerArtikls (NODE*,char*,char*);//function that shows a list of bills for specific customer
 void artiklsByDate(NODE*,unsigned char);//function thay shows a list of bills for specific date
-void productData(NODE* , char* );//function that shows all details of chosen product from all bills
-
+void productData(NODE*, char*);//function that shows all details of chosen product from all bills
+void statistics_review(NODE*);//total company turnover
 
 #endif // ANALITCOMMANDS_H
