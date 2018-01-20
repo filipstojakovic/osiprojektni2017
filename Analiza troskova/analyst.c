@@ -17,10 +17,12 @@ char analystMenu(NODE *head)
         printf("[p] - Review product data\n");
         printf("[w] - Review of sale data\n");
         printf("[s] - Statistics review\n");
+        printf("[b] - Report about bills\n");
         printf("[h] - Help menu\n");
-        printf("==========================\n");
+        printf("===========================\n");
         printf("[l] - Logout\n");
         printf("[e] - Exit\n");
+        printf("===========================\n");
         printf("Option: ");
         scanf("%c",&c);
         scanf("%c",&ch);
@@ -51,6 +53,11 @@ char analystMenu(NODE *head)
         else if(c=='s')
         {
             statistics_review(tmp_head);
+            c=again_menu_analyst();
+        }
+        else if(c=='b')
+        {
+            bills_report();
             c=again_menu_analyst();
         }
         else if(c=='p')
@@ -95,7 +102,7 @@ char analystMenu(NODE *head)
 
 int letters_check_analyst_menu(char s)
 {
-    if( s!='r' && s!='w' && s!='h' && s!='e' && s!='p' && s!='l' && s!='s')
+    if(s!='r' && s!='w' && s!='h' && s!='e' && s!='p' && s!='l' && s!='s' && s!='b')
         return 0;
     return 1;
 }
@@ -145,6 +152,8 @@ void helpMenu_analyst()
     printf("This option reviews data for all sales made in a specific timeline \n\n\n");
     printf("Statistics review:\n");
     printf("This option reviews total trafficing of company.\n\n\n");
+    printf("Report about bills:\n");
+    printf("This option reviews all valid and invalid bills.\n\n\n");
 }
 
 void customerList(NODE *head)
@@ -178,7 +187,7 @@ void customerArtikls(NODE* head,char* name,char* surname)
                            head->artdate[j].art[i].amount,head->artdate[j].art[i].price*currency,
                            head->artdate[j].art[i].total*currency);
                     }
-                printf("\nTotal: %.2f\tPDV: %.2f\tSum: %.2f\n\n",head->artdate[j].total,head->artdate[j].PDV,head->artdate[j].sum);
+                printf("\nTotal: %.2f\tPDV: %.2f\tSum: %.2f\n\n",head->artdate[j].total*currency,head->artdate[j].PDV*currency,head->artdate[j].sum*currency);
                 printf("\n");
             }
             printf("\n");
@@ -218,7 +227,7 @@ void artiklsByDate(NODE* head,unsigned char month)
                            head->artdate[j].art[i].amount,head->artdate[j].art[i].price*currency,
                            head->artdate[j].art[i].total*currency);
                 }
-                printf("\nTotal: %.2f\tPDV: %.2f\tSum: %.2f\n\n",head->artdate[j].total,head->artdate[j].PDV,head->artdate[j].sum);
+                printf("\nTotal: %.2f\tPDV: %.2f\tSum: %.2f\n\n",head->artdate[j].total*currency,head->artdate[j].PDV*currency,head->artdate[j].sum*currency);
             }
         }
         fflush(stdin);
@@ -297,11 +306,46 @@ void statistics_review(NODE* head)
     else
     {
         printf("Results of total turn over:");
-        printf("\nTotal: %.2f\nPDV: %.2f\nSum: %.2f\n\n",result.total,result.PDV,result.sum);
+        printf("\nTotal: %.2f\nPDV: %.2f\nSum: %.2f\n\n",result.total*currency,result.PDV*currency,result.sum*currency);
     }
 }
 
-
+void bills_report()
+{
+    DIR *dir;
+    struct dirent *dp;
+    if ((dir= opendir("./bills")) == NULL)
+    {
+        printf("Cannot open ./bills directory\n");
+    }
+    else
+    {
+        printf("All valid bills:\n");
+        while((dp=readdir (dir)) != NULL)
+        {
+            if(strcmp(dp->d_name,".")==0 || strcmp(dp->d_name,"..")==0)
+                continue;
+            printf("%s\n",dp->d_name);
+        }
+    }
+    printf("\n\n");
+    if ((dir= opendir("./Error")) == NULL)
+    {
+        printf("\nCannot open ./Error directory\n");
+    }
+    else
+    {
+        printf("\nAll invalid bills:\n");
+        while((dp=readdir (dir)) != NULL)
+        {
+            if(strcmp(dp->d_name,".")==0 || strcmp(dp->d_name,"..")==0)
+                continue;
+            printf("%s\n",dp->d_name);
+        }
+    }
+    printf("\n\n");
+    closedir(dir);
+}
 
 
 

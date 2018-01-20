@@ -18,5 +18,6 @@ void customerArtikls (NODE*,char*,char*);//function that shows a list of bills f
 void artiklsByDate(NODE*,unsigned char);//function thay shows a list of bills for specific date
 void productData(NODE*, char*);//function that shows all details of chosen product from all bills
 void statistics_review(NODE*);//total company turnover
+void bills_report();//prints all names of valid or invalid bills
 
 #endif // ANALITCOMMANDS_H

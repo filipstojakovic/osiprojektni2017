@@ -22,9 +22,10 @@ char adminMenu()
         printf("[c] - Account managment\n");
         printf("[v] - Currency settings\n");
         printf("[h] - Help menu\n");
-        printf("=======================\n");
+        printf("========================\n");
         printf("[l] - Logout\n");
         printf("[e] - Exit\n");
+        printf("========================\n");
         printf("Option: ");
         scanf("%c",&c);
         scanf("%c",&ch);
