@@ -7,11 +7,11 @@ char analystMenu(NODE *head)
     char c,ch;
     printf("*=============================================================================*\n");
     printf("                               Welcome Analyst! \n\n");
-    printCurrency();
     do
     {
-        NODE *tmp_head=head;    //
+        NODE *tmp_head=head;
         fflush(stdin);
+        printCurrency();
         printf("*=============================================================================*\n");
         printf("[r] - Review customer data\n");
         printf("[p] - Review product data\n");
@@ -75,7 +75,6 @@ char analystMenu(NODE *head)
             {
                 printf("Enter specific month (1-12): ");
                 scanf("%hhu",&month);
-
             }
             while(month<1 || month>12);
             artiklsByDate(tmp_head,month);
@@ -314,7 +313,7 @@ void bills_report()
 {
     DIR *dir;
     struct dirent *dp;
-    if ((dir= opendir("./bills")) == NULL)
+    if((dir= opendir("./bills")) == NULL)
     {
         printf("Cannot open ./bills directory\n");
     }

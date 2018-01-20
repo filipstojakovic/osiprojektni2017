@@ -17,7 +17,7 @@ int main()
     printf("*=============================================================================*\n");
     printf("\t     Welcome to best program for analysis of the expenses\n");
     printf("*=============================================================================*\n");
-    printf("\n\n\n\t\t\t\tNeme of program :\n\n\t\t\t\tAnaliza troskova \n\n\n\n");
+    printf("\n\n\n\t\t\t      Neme of the program :\n\n\t\t\t\tAnaliza troskova \n\n\n\n");
     printf("*=============================================================================*\n");
     printf("\n\n\n\t Version 1.0\n\t Organization: Group 17\n\n\n\n");
     printf("*=============================================================================*\n");
